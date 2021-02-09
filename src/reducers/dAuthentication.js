@@ -1,6 +1,6 @@
 import { ACTION_TYPES } from "../actions/dAuthenticate";
 const initialState = {
-    user: null,
+    user: { name: "name", code: "code" },
 }
 
 
@@ -10,7 +10,7 @@ export const dAuthenticationReducers = (state = initialState, action) => {
         case ACTION_TYPES.LOGOUT:
             return {
                 ...state,
-                user: null,
+                user: {},
             }
 
         case ACTION_TYPES.LOGIN:
@@ -18,7 +18,7 @@ export const dAuthenticationReducers = (state = initialState, action) => {
                 ...state,
                 user: action.payload,
             }
-                        
+
         default:
             return state
     }

@@ -21,15 +21,17 @@ export const logout = () => dispatch => {
         .catch(err => console.log(err))
 }
 
-export const login = (data, onSuccess) => dispatch => {
+export const login = (data, onSuccess, onFailure) => dispatch => {
     data = formateData(data)
     api.dAuthenticate().login(data)
         .then(res => {
             dispatch({
                 type: ACTION_TYPES.LOGIN,
-                payload: res.data
+                //payload: res.data
+                payload: {name: 'api-name', code: 'api-code'}
             })
-            onSuccess()
+            //onSuccess()
+            onFailure()
         })
         .catch(err => console.log(err))
 }

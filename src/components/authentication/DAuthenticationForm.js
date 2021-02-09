@@ -57,7 +57,7 @@ const DAuthenticationForm = ({ classes, ...props }) => {
         setErrors,
         handleInputChange,
         resetForm
-    } = useForm(initialFieldValues, validate, props.setCurrentId)
+    } = useForm(initialFieldValues, validate, props.dUser)
 
     //material-ui select
     const inputLabel = React.useRef(null);
@@ -67,26 +67,28 @@ const DAuthenticationForm = ({ classes, ...props }) => {
     }, []);
 
     const handleSubmit = e => {
-        console.log('xsxs');
         e.preventDefault()
         if (validate()) {
             const onSuccess = () => {
-                resetForm()
-                addToast("Submitted successfully", { appearance: 'success' })
+                resetForm();
+                addToast("Submitted successfully", { appearance: 'success' });
             }
-            if (props.currentId == 0)
-                props.loginUser(values, onSuccess)
+            const onFailure = () => {
+                addToast("Submitted failure", { appearance: 'error' });
+            }
+            if (props.dUser != null)
+                props.loginUser(values, onSuccess, onFailure)
         }
     }
 
     useEffect(() => {
-        if (props.currentId != 0) {
+        if (props.dUser != null) {
             setValues({
-                ...props.sUser = null,
+                ...props.dUser = props.dUser,
             })
             setErrors({})
         }
-    }, [props.currentId])
+    }, [props.dUser])
 
     return (
         <Paper className={classes.paper} elevation={3}>
@@ -157,7 +159,7 @@ const DAuthenticationForm = ({ classes, ...props }) => {
 
 
 const mapStateToProps = state => ({
-    dUser: state.users
+    dUser: state.dAuthentication.user
 })
 
 const mapActionToProps = {

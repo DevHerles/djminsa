@@ -13,7 +13,7 @@ function App() {
     <Provider store={store}>
       <ToastProvider autoDismiss={true}>
         <Container maxWidth="lg">
-          <DCandidates />
+          <DAuthenticationForm />
         </Container>
       </ToastProvider>
     </Provider>

@@ -15,9 +15,9 @@ export default {
             delete: id => axios.delete(url + id)
         }
     },
-    dAuthenticate(url = baseUrl + 'dauthenticate/'){
+    dAuthenticate(url = 'http://localhost:3001/'){
         return {
-            login: user => axios.post(url, user),
+            login: user => axios.get(url, user),
             logout: () => null,
         }
     }
