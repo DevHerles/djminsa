@@ -3,7 +3,8 @@ import { Redirect, Route, Switch } from "react-router-dom";
 
 import start from "./start";
 import container from "./container";
-import Redux from "./basic";
+//import Redux from "./basic";
+import Redux from "./try";
 
 const Health = ({match}) => (
     <div className="dashboard-wrapper">

@@ -105,7 +105,7 @@ class HealthForm extends Component {
                                     id="q12_detail"
                                     value={values.q12_detail}
                                     component="textarea" />
-                                {errors.q12_detail  && touched.q12_detail ? (
+                                {errors.q12_detail ? (
                                     <div className="invalid-feedback d-block">
                                     {errors.q12_detail}
                                     </div>
@@ -152,7 +152,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 const Redux = connect(
     state => state.health,
-    dispatch => bindActionCreators(actionCreators, dispatch)
+    dispatch => bindActionCreators(addHealth, dispatch)
 )(healthFormFormik);
 
 export default Redux;
