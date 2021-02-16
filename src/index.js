@@ -1,12 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import "./assets/css/vendor/bootstrap.min.css";
+import "react-circular-progressbar/dist/styles.css";
+import "react-perfect-scrollbar/dist/css/styles.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "react-table/react-table.css";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { isMultiColorActive, defaultColor } from "./constants/defaultValues";
+const color =
+  isMultiColorActive && localStorage.getItem("themeColor")
+    ? localStorage.getItem("themeColor")
+    : defaultColor;
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+localStorage.setItem("themeColor", color);
+
+require("./assets/css/sass/themes/gogo." + color + ".scss");
+require("./AppRenderer");
