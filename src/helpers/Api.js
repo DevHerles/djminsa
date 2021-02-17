@@ -1,5 +1,5 @@
 const odoo = {
-    create: (health) =>{},
+    create: (health) => health,
     write: {},
     unlink: {},
 };

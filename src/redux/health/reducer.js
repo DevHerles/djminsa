@@ -6,8 +6,8 @@ import {
 
 const INIT_STATE = {
     newHealth: {
-        q1: "",
-        q2: "",
+        q1: "si",
+        q2: "no",
         q3: "",
         q4: "",
         q5: "",

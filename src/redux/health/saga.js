@@ -24,10 +24,8 @@ const addHealthAsync = async (health) =>
 function* addHealth({
     payload
 }) {
-    const { health } = payload.health;
-
     try {
-        const _health = yield call(addHealthAsync, health);
+        const _health = yield call(addHealthAsync, payload);
         if(!_health.hasError) {
             yield put(addHealthSuccess(_health));
         } else {

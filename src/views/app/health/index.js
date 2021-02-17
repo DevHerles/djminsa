@@ -10,7 +10,7 @@ const Health = ({match}) => (
     <div className="dashboard-wrapper">
         <Switch>
             <Redirect exact from={`${match.url}/`} to={`${match.url}/start`}/>
-            <Route path={`${match.url}/start`} component={Redux}/>
+            <Route path={`${match.url}/start`} defQ1="si" component={Redux}/>
             <Redirect to="/error"/>
         </Switch>
     </div>
