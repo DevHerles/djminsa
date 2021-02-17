@@ -4,17 +4,17 @@ import {
     ADD_HEALTH_FAILURE,
 } from "../actions";
 
-export const addHealth = (health) => ({
+export const addHealthAction = (health) => ({
     type: ADD_HEALTH,
     payload: health,
 });
 
-export const addHealthSuccess = (health) => ({
+export const addHealthSuccessAction = (health) => ({
     type: ADD_HEALTH_SUCCESS,
     payload: health,
 });
 
-export const addHealthFailure = (error) => ({
+export const addHealthFailureAction = (error) => ({
     type: ADD_HEALTH_FAILURE,
     payload: error,
 });

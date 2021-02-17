@@ -6,8 +6,8 @@ import {
 
 const INIT_STATE = {
     newHealth: {
-        q1: "si",
-        q2: "no",
+        q1: "",
+        q2: "",
         q3: "",
         q4: "",
         q5: "",
@@ -19,6 +19,7 @@ const INIT_STATE = {
         q11: "",
         q12_detail: "",
     },
+    healths: [],
     loading: false,
     error: false,
     errorMessage: "",

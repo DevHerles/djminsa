@@ -12,8 +12,8 @@ import {
     ADD_HEALTH,
 } from "../actions";
 import {
-    addHealthSuccess,
-    addHealthFailure,
+    addHealthSuccessAction,
+    addHealthFailureAction,
 } from './actions';
 
 const addHealthAsync = async (health) =>
@@ -27,21 +27,21 @@ function* addHealth({
     try {
         const _health = yield call(addHealthAsync, payload);
         if(!_health.hasError) {
-            yield put(addHealthSuccess(_health));
+            yield put(addHealthSuccessAction(_health));
         } else {
-            yield put(addHealthFailure(_health.errorMessage));
+            yield put(addHealthFailureAction(_health.errorMessage));
         }
     } catch (error) {
-        yield put(addHealthFailure(error));
+        yield put(addHealthFailureAction(error));
     }
 }
 
-export function* watchAddHealth() {
+export function* watchAddHealthAction() {
     yield takeEvery(ADD_HEALTH, addHealth);
 }
 
 export default function* rootSaga() {
     yield all([
-        fork(watchAddHealth),
+        fork(watchAddHealthAction),
     ]);
 }
