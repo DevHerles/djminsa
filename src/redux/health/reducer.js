@@ -18,6 +18,7 @@ const INIT_STATE = {
         q10: "",
         q11: "",
         q12_detail: "",
+        q13: false,
     },
     healths: [],
     loading: false,
