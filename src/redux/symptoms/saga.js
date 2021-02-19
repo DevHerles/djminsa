@@ -12,8 +12,8 @@ import {
     ADD_SYMPTOMS,
 } from "../actions";
 import {
-    addSymptomsSuccess,
-    addSymptomsFailure,
+    addSymptomsSuccessAction,
+    addSymptomsFailureAction,
 } from './actions';
 
 const addSymptomsAsync = async (symptoms) =>
@@ -24,17 +24,15 @@ const addSymptomsAsync = async (symptoms) =>
 function* addSymptoms({
     payload
 }) {
-    const { symptoms } = payload.symptoms;
-
     try {
-        const _symptoms = yield call(addSymptomsAsync, symptoms);
+        const _symptoms = yield call(addSymptomsAsync, payload);
         if(!_symptoms.hasError) {
-            yield put(addSymptomsSuccess(_symptoms));
+            yield put(addSymptomsSuccessAction(_symptoms));
         } else {
-            yield put(addSymptomsFailure(_symptoms.errorMessage));
+            yield put(addSymptomsFailureAction(_symptoms.errorMessage));
         }
     } catch (error) {
-        yield put(addSymptomsFailure(error));
+        yield put(addSymptomsFailureAction(error));
     }
 }
 

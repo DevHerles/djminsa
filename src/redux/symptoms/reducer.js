@@ -6,14 +6,17 @@ import {
 
 
 const INIT_STATE = {
-    symptoms: {
+    newSymptoms: {
         q1: "",
         q2: "",
         q3: "",
         q4: "",
         q5: "",
-        q5_detail: "",
+        q6: "",
+        q6_detail: "",
+        q7: false,
     },
+    symptoms: [],
     loading: false,
     error: false,
     errorMessage: "",

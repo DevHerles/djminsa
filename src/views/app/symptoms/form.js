@@ -16,21 +16,15 @@ const options = [
 ];
 
 const questions = [
-    { id: "q1", label: "1. Hipertensión arterial no controlada (*)"},
-    { id: "q2", label: "2. Enfermedades cardiovasculares graves (*)"},
-    { id: "q3", label: "3. Diabetes Mellitus (*)"},
-    { id: "q4", label: "4. Obesidad con IMC de 40 a mas (*)", help: "El índice de masa corporal (IMC) se determina usando la formula peso(kg) / estatura(m)^2 Ejemplo: Peso 68 kg, Estatura = 1.66 m, Cálculo IMC = 68 / (1.65)(1.65) = 24.98"},
-    { id: "q5", label: "5. Cáncer (*)"},
-    { id: "q6", label: "6. Asma moderada o grave (*)"},
-    { id: "q7", label: "7. Enfermedad pulmonar crónica (*)"},
-    { id: "q8", label: "8. Insuficiencia renal crónica en tratamiento con hemodiálisis (*)"},
-    { id: "q9", label: "9. Enfermedad o tratamiento inmunosupresor (*)"},
-    { id: "q10", label: "10. Edad mayor de 65 años (*)"},
-    { id: "q11", label: "11. Gestación (*)"},
-    { id: "q12", label: "12. Otros (*)"},
+    { id: "q1", label: "1. Sensación de alza térmica o fiebre"},
+    { id: "q2", label: "2. Tos, estornudos o dificultad para respirar"},
+    { id: "q3", label: "3. Expectoración o flema amarilla o verdosa"},
+    { id: "q4", label: "4. Pérdida de gusto y/o olfato"},
+    { id: "q5", label: "5. Contacto con persona(s) con un caso confirmado de COVID-19"},
+    { id: "q6", label: "6. Está tomando alguna medicación (detallar cuál o cuáles)"},
 ];
 
-class HealthFormComponent extends Component {
+class SymptomsFormComponent extends Component {
     render() {
         const {
             values,
@@ -54,12 +48,17 @@ class HealthFormComponent extends Component {
                 <Colxx xxs="12">
                     <Card>
                         <CardBody>
-                            <h6 className="mb-4">Declaración jurada de Salud</h6>
+                            <h6 className="mb-4">Declaración Jurada de Sintomatología Covid-19</h6>
                             <UncontrolledAlert color="danger" align="center" fade={false}>
                                 <h5>Todos los datos expresados en esta ficha constituyen declaración jurada de mi parte. He sido informado que de omitir o declarar informacion falsa puedo perjudicar la salud de mis compañeros de trabajo, y la mia propia, asumiendo las responsabilidades que correspondan.</h5>
                             </UncontrolledAlert>
-                            <Alert color="success" align="center" >
-                            <h5>Por medio de la presente DECLARO BAJO JURAMENTO encontrarme dentro del grupo de servidores con riesgo vulnerable por tener:</h5>
+                            <Alert color="success" align="center">
+                            <h5>
+
+FICHA DE SINTOMATOLOGÍA COVID-19 PARA EL REGRESO AL TRABAJO - DECLARACIÓN JURADA
+<br></br><br></br>
+En los últimos 14 días calendario ha tenido alguno de los síntomas siguientes:
+</h5>
                             </Alert>
                             <Form className="av-tooltip tooltip-label-right">
                                 {
@@ -71,7 +70,7 @@ class HealthFormComponent extends Component {
                                                     <FormGroup className="error-l-250" key={question.id}>
                                                         <Label className="d-block"><h4>{question.label}</h4></Label>
                                                         {question.help !== undefined ?
-                                                        <Label className="d-block"><h6><Alert color="info">{question.help}</Alert></h6></Label>
+                                                        <Label className="d-block"><h6><Alert color="danger">{question.help}</Alert></h6></Label>
                                                         : null}
                                                         <h4>
                                                         <FormikRadioButtonGroup
@@ -96,35 +95,35 @@ class HealthFormComponent extends Component {
                                         );
                                     })
                                 }
-                                { (values.q12 === "si") ? 
+                                { (values.q6 === "si") ? 
                                     <h5>
                                     <FormGroup className="error-l-250">
-                                        <Label>Especifique otros (*)</Label>
+                                        <Label>Detalle los medicamentos (*)</Label>
                                         <Field
                                             className="form-control"
-                                            name="q12_detail"
-                                            id="q12_detail"
-                                            value={values.q12_detail}
+                                            name="q6_detail"
+                                            id="q6_detail"
+                                            value={values.q6_detail}
                                             component="textarea" />
-                                        {errors.q12_detail && touched.q12_detail ? (
+                                        {errors.q6_detail && touched.q6_detail ? (
                                             <div className="invalid-feedback d-block">
-                                            <h5>{errors.q12_detail}</h5>
+                                            <h5>{errors.q6_detail}</h5>
                                             </div>
                                         ) : null}
                                     </FormGroup></h5> : null}
                                 <FormGroup className="error-l-250">
                                     <h4>
                                     <FormikCustomCheckbox
-                                        name="q13"
-                                        value={values.q13}
-                                        label="He leído y confirmo la Declaración Jurada de Salud (*)"
+                                        name="q7"
+                                        value={values.q7}
+                                        label="He leído y confirmo la Declaración Jurada de Sintomatología (*)"
                                         onChange={setFieldValue}
                                         onBlur={setFieldTouched}
                                     />
                                     </h4>
-                                    {errors.q13 && touched.q13 ? (
+                                    {errors.q7 && touched.q7 ? (
                                         <div className="invalid-feedback d-block">
-                                        <h5>{errors.q13}</h5>
+                                        <h5>{errors.q7}</h5>
                                         </div>
                                     ) : null}
                                 </FormGroup>
@@ -144,4 +143,4 @@ class HealthFormComponent extends Component {
         );
     }
 }
-export default HealthFormComponent;
+export default SymptomsFormComponent;

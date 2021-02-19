@@ -4,17 +4,17 @@ import {
     ADD_SYMPTOMS_FAILURE,
 } from "../actions";
 
-export const addSymptoms = (symptoms) => ({
+export const addSymptomsAction = (symptoms) => ({
     type: ADD_SYMPTOMS,
     payload: symptoms,
 });
 
-export const addSymptomsSuccess = (symptoms) => ({
+export const addSymptomsSuccessAction = (symptoms) => ({
     type: ADD_SYMPTOMS_SUCCESS,
     payload: symptoms,
 });
 
-export const addSymptomsFailure = (error) => ({
+export const addSymptomsFailureAction = (error) => ({
     type: ADD_SYMPTOMS_FAILURE,
     payload: error,
 });

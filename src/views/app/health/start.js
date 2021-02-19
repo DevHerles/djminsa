@@ -1,6 +1,5 @@
-import React from "react";
 import * as Yup from 'yup';
-import { withFormik, Form } from "formik";
+import { withFormik } from "formik";
 import { bindActionCreators } from "redux";
 
 import { connect } from "react-redux";
