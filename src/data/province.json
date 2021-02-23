@@ -1,0 +1,979 @@
+{
+	"data": [
+		{
+			"co_department": "01",
+			"code": "01",
+			"name": "CHACHAPOYAS"
+		},
+		{
+			"co_department": "01",
+			"code": "02",
+			"name": "BAGUA"
+		},
+		{
+			"co_department": "01",
+			"code": "03",
+			"name": "BONGARA"
+		},
+		{
+			"co_department": "01",
+			"code": "04",
+			"name": "CONDORCANQUI"
+		},
+		{
+			"co_department": "01",
+			"code": "05",
+			"name": "LUYA"
+		},
+		{
+			"co_department": "01",
+			"code": "06",
+			"name": "RODRIGUEZ DE MENDOZA"
+		},
+		{
+			"co_department": "01",
+			"code": "07",
+			"name": "UTCUBAMBA"
+		},
+		{
+			"co_department": "02",
+			"code": "01",
+			"name": "HUARAZ"
+		},
+		{
+			"co_department": "02",
+			"code": "02",
+			"name": "AIJA"
+		},
+		{
+			"co_department": "02",
+			"code": "03",
+			"name": "ANTONIO RAYMONDI"
+		},
+		{
+			"co_department": "02",
+			"code": "04",
+			"name": "ASUNCION"
+		},
+		{
+			"co_department": "02",
+			"code": "05",
+			"name": "BOLOGNESI"
+		},
+		{
+			"co_department": "02",
+			"code": "06",
+			"name": "CARHUAZ"
+		},
+		{
+			"co_department": "02",
+			"code": "07",
+			"name": "CARLOS FERMIN FITZCARRALD"
+		},
+		{
+			"co_department": "02",
+			"code": "08",
+			"name": "CASMA"
+		},
+		{
+			"co_department": "02",
+			"code": "09",
+			"name": "CORONGO"
+		},
+		{
+			"co_department": "02",
+			"code": 10,
+			"name": "HUARI"
+		},
+		{
+			"co_department": "02",
+			"code": 11,
+			"name": "HUARMEY"
+		},
+		{
+			"co_department": "02",
+			"code": 12,
+			"name": "HUAYLAS"
+		},
+		{
+			"co_department": "02",
+			"code": 13,
+			"name": "MARISCAL LUZURIAGA"
+		},
+		{
+			"co_department": "02",
+			"code": 14,
+			"name": "OCROS"
+		},
+		{
+			"co_department": "02",
+			"code": 15,
+			"name": "PALLASCA"
+		},
+		{
+			"co_department": "02",
+			"code": 16,
+			"name": "POMABAMBA"
+		},
+		{
+			"co_department": "02",
+			"code": 17,
+			"name": "RECUAY"
+		},
+		{
+			"co_department": "02",
+			"code": 18,
+			"name": "SANTA"
+		},
+		{
+			"co_department": "02",
+			"code": 19,
+			"name": "SIHUAS"
+		},
+		{
+			"co_department": "02",
+			"code": 20,
+			"name": "YUNGAY"
+		},
+		{
+			"co_department": "03",
+			"code": "01",
+			"name": "ABANCAY"
+		},
+		{
+			"co_department": "03",
+			"code": "02",
+			"name": "ANDAHUAYLAS"
+		},
+		{
+			"co_department": "03",
+			"code": "03",
+			"name": "APURIMAC"
+		},
+		{
+			"co_department": "03",
+			"code": "04",
+			"name": "AYMARAES"
+		},
+		{
+			"co_department": "03",
+			"code": "05",
+			"name": "COTABAMBAS"
+		},
+		{
+			"co_department": "03",
+			"code": "06",
+			"name": "CHINCHEROS"
+		},
+		{
+			"co_department": "03",
+			"code": "07",
+			"name": "GRAU"
+		},
+		{
+			"co_department": "04",
+			"code": "01",
+			"name": "AREQUIPA"
+		},
+		{
+			"co_department": "04",
+			"code": "02",
+			"name": "CAMANA"
+		},
+		{
+			"co_department": "04",
+			"code": "03",
+			"name": "CARAVELI"
+		},
+		{
+			"co_department": "04",
+			"code": "04",
+			"name": "CASTILLA"
+		},
+		{
+			"co_department": "04",
+			"code": "05",
+			"name": "CAYLLOMA"
+		},
+		{
+			"co_department": "04",
+			"code": "06",
+			"name": "CONDESUYOS"
+		},
+		{
+			"co_department": "04",
+			"code": "07",
+			"name": "ISLAY"
+		},
+		{
+			"co_department": "04",
+			"code": "08",
+			"name": "LA UNION"
+		},
+		{
+			"co_department": "05",
+			"code": "01",
+			"name": "HUAMANGA"
+		},
+		{
+			"co_department": "05",
+			"code": "02",
+			"name": "CANGALLO"
+		},
+		{
+			"co_department": "05",
+			"code": "03",
+			"name": "HUANCA SANCOS"
+		},
+		{
+			"co_department": "05",
+			"code": "04",
+			"name": "HUANTA"
+		},
+		{
+			"co_department": "05",
+			"code": "05",
+			"name": "LA MAR"
+		},
+		{
+			"co_department": "05",
+			"code": "06",
+			"name": "LUCANAS"
+		},
+		{
+			"co_department": "05",
+			"code": "07",
+			"name": "PARINACOCHAS"
+		},
+		{
+			"co_department": "05",
+			"code": "08",
+			"name": "PAUCAR DEL SARA SARA"
+		},
+		{
+			"co_department": "05",
+			"code": "09",
+			"name": "SUCRE"
+		},
+		{
+			"co_department": "05",
+			"code": 10,
+			"name": "VICTOR FAJARDO"
+		},
+		{
+			"co_department": "05",
+			"code": 11,
+			"name": "VILCAS HUAMAN"
+		},
+		{
+			"co_department": "06",
+			"code": "01",
+			"name": "CAJAMARCA"
+		},
+		{
+			"co_department": "06",
+			"code": "02",
+			"name": "CAJABAMBA"
+		},
+		{
+			"co_department": "06",
+			"code": "03",
+			"name": "CELENDIN"
+		},
+		{
+			"co_department": "06",
+			"code": "04",
+			"name": "CHOTA"
+		},
+		{
+			"co_department": "06",
+			"code": "05",
+			"name": "CONTUMAZA"
+		},
+		{
+			"co_department": "06",
+			"code": "06",
+			"name": "CUTERVO"
+		},
+		{
+			"co_department": "06",
+			"code": "07",
+			"name": "HUALGAYOC"
+		},
+		{
+			"co_department": "06",
+			"code": "08",
+			"name": "JAEN"
+		},
+		{
+			"co_department": "06",
+			"code": "09",
+			"name": "SAN IGNACIO"
+		},
+		{
+			"co_department": "06",
+			"code": 10,
+			"name": "SAN MARCOS"
+		},
+		{
+			"co_department": "06",
+			"code": 11,
+			"name": "SAN MIGUEL"
+		},
+		{
+			"co_department": "06",
+			"code": 12,
+			"name": "SAN PABLO"
+		},
+		{
+			"co_department": "06",
+			"code": 13,
+			"name": "SANTA CRUZ"
+		},
+		{
+			"co_department": "07",
+			"code": "01",
+			"name": "CALLAO"
+		},
+		{
+			"co_department": "08",
+			"code": "01",
+			"name": "CUSCO"
+		},
+		{
+			"co_department": "08",
+			"code": "02",
+			"name": "ACOMAYO"
+		},
+		{
+			"co_department": "08",
+			"code": "03",
+			"name": "ANTA"
+		},
+		{
+			"co_department": "08",
+			"code": "04",
+			"name": "CALCA"
+		},
+		{
+			"co_department": "08",
+			"code": "05",
+			"name": "CANAS"
+		},
+		{
+			"co_department": "08",
+			"code": "06",
+			"name": "CANCHIS"
+		},
+		{
+			"co_department": "08",
+			"code": "07",
+			"name": "CHUMBIVILCAS"
+		},
+		{
+			"co_department": "08",
+			"code": "08",
+			"name": "ESPINAR"
+		},
+		{
+			"co_department": "08",
+			"code": "09",
+			"name": "LA CONVENCION"
+		},
+		{
+			"co_department": "08",
+			"code": 10,
+			"name": "PARURO"
+		},
+		{
+			"co_department": "08",
+			"code": 11,
+			"name": "PAUCARTAMBO"
+		},
+		{
+			"co_department": "08",
+			"code": 12,
+			"name": "QUISPICANCHI"
+		},
+		{
+			"co_department": "08",
+			"code": 13,
+			"name": "URUBAMBA"
+		},
+		{
+			"co_department": "09",
+			"code": "01",
+			"name": "HUANCAVELICA"
+		},
+		{
+			"co_department": "09",
+			"code": "02",
+			"name": "ACOBAMBA"
+		},
+		{
+			"co_department": "09",
+			"code": "03",
+			"name": "ANGARAES"
+		},
+		{
+			"co_department": "09",
+			"code": "04",
+			"name": "CASTROVIRREYNA"
+		},
+		{
+			"co_department": "09",
+			"code": "05",
+			"name": "CHURCAMPA"
+		},
+		{
+			"co_department": "09",
+			"code": "06",
+			"name": "HUAYTARA"
+		},
+		{
+			"co_department": "09",
+			"code": "07",
+			"name": "TAYACAJA"
+		},
+		{
+			"co_department": 10,
+			"code": "01",
+			"name": "HUANUCO"
+		},
+		{
+			"co_department": 10,
+			"code": "02",
+			"name": "AMBO"
+		},
+		{
+			"co_department": 10,
+			"code": "03",
+			"name": "DOS DE MAYO"
+		},
+		{
+			"co_department": 10,
+			"code": "04",
+			"name": "HUACAYBAMBA"
+		},
+		{
+			"co_department": 10,
+			"code": "05",
+			"name": "HUAMALIES"
+		},
+		{
+			"co_department": 10,
+			"code": "06",
+			"name": "LEONCIO PRADO"
+		},
+		{
+			"co_department": 10,
+			"code": "07",
+			"name": "MARAÑON"
+		},
+		{
+			"co_department": 10,
+			"code": "08",
+			"name": "PACHITEA"
+		},
+		{
+			"co_department": 10,
+			"code": "09",
+			"name": "PUERTO INCA"
+		},
+		{
+			"co_department": 10,
+			"code": 10,
+			"name": "LAURICOCHA"
+		},
+		{
+			"co_department": 10,
+			"code": 11,
+			"name": "YAROWILCA"
+		},
+		{
+			"co_department": 11,
+			"code": "01",
+			"name": "ICA"
+		},
+		{
+			"co_department": 11,
+			"code": "02",
+			"name": "CHINCHA"
+		},
+		{
+			"co_department": 11,
+			"code": "03",
+			"name": "NAZCA"
+		},
+		{
+			"co_department": 11,
+			"code": "04",
+			"name": "PALPA"
+		},
+		{
+			"co_department": 11,
+			"code": "05",
+			"name": "PISCO"
+		},
+		{
+			"co_department": 12,
+			"code": "01",
+			"name": "HUANCAYO"
+		},
+		{
+			"co_department": 12,
+			"code": "02",
+			"name": "CONCEPCION"
+		},
+		{
+			"co_department": 12,
+			"code": "03",
+			"name": "CHANCHAMAYO"
+		},
+		{
+			"co_department": 12,
+			"code": "04",
+			"name": "JAUJA"
+		},
+		{
+			"co_department": 12,
+			"code": "05",
+			"name": "JUNIN"
+		},
+		{
+			"co_department": 12,
+			"code": "06",
+			"name": "SATIPO"
+		},
+		{
+			"co_department": 12,
+			"code": "07",
+			"name": "TARMA"
+		},
+		{
+			"co_department": 12,
+			"code": "08",
+			"name": "YAULI"
+		},
+		{
+			"co_department": 12,
+			"code": "09",
+			"name": "CHUPACA"
+		},
+		{
+			"co_department": 13,
+			"code": "01",
+			"name": "TRUJILLO"
+		},
+		{
+			"co_department": 13,
+			"code": "02",
+			"name": "ASCOPE"
+		},
+		{
+			"co_department": 13,
+			"code": "03",
+			"name": "BOLIVAR"
+		},
+		{
+			"co_department": 13,
+			"code": "04",
+			"name": "CHEPEN"
+		},
+		{
+			"co_department": 13,
+			"code": "05",
+			"name": "JULCAN"
+		},
+		{
+			"co_department": 13,
+			"code": "06",
+			"name": "OTUZCO"
+		},
+		{
+			"co_department": 13,
+			"code": "07",
+			"name": "PACASMAYO"
+		},
+		{
+			"co_department": 13,
+			"code": "08",
+			"name": "PATAZ"
+		},
+		{
+			"co_department": 13,
+			"code": "09",
+			"name": "SANCHEZ CARRION"
+		},
+		{
+			"co_department": 13,
+			"code": 10,
+			"name": "SANTIAGO DE CHUCO"
+		},
+		{
+			"co_department": 13,
+			"code": 11,
+			"name": "GRAN CHIMU"
+		},
+		{
+			"co_department": 13,
+			"code": 12,
+			"name": "VIRU"
+		},
+		{
+			"co_department": 14,
+			"code": "01",
+			"name": "CHICLAYO"
+		},
+		{
+			"co_department": 14,
+			"code": "02",
+			"name": "FERREÑAFE"
+		},
+		{
+			"co_department": 14,
+			"code": "03",
+			"name": "LAMBAYEQUE"
+		},
+		{
+			"co_department": 15,
+			"code": "01",
+			"name": "LIMA"
+		},
+		{
+			"co_department": 15,
+			"code": "02",
+			"name": "BARRANCA"
+		},
+		{
+			"co_department": 15,
+			"code": "03",
+			"name": "CAJATAMBO"
+		},
+		{
+			"co_department": 15,
+			"code": "04",
+			"name": "CANTA"
+		},
+		{
+			"co_department": 15,
+			"code": "05",
+			"name": "CAÑETE"
+		},
+		{
+			"co_department": 15,
+			"code": "06",
+			"name": "HUARAL"
+		},
+		{
+			"co_department": 15,
+			"code": "07",
+			"name": "HUAROCHIRI"
+		},
+		{
+			"co_department": 15,
+			"code": "08",
+			"name": "HUAURA"
+		},
+		{
+			"co_department": 15,
+			"code": "09",
+			"name": "OYON"
+		},
+		{
+			"co_department": 15,
+			"code": 10,
+			"name": "YAUYOS"
+		},
+		{
+			"co_department": 16,
+			"code": "01",
+			"name": "MAYNAS"
+		},
+		{
+			"co_department": 16,
+			"code": "02",
+			"name": "ALTO AMAZONAS"
+		},
+		{
+			"co_department": 16,
+			"code": "03",
+			"name": "LORETO"
+		},
+		{
+			"co_department": 16,
+			"code": "04",
+			"name": "MARISCAL RAMON CASTILLA"
+		},
+		{
+			"co_department": 16,
+			"code": "05",
+			"name": "REQUENA"
+		},
+		{
+			"co_department": 16,
+			"code": "06",
+			"name": "UCAYALI"
+		},
+		{
+			"co_department": 16,
+			"code": "07",
+			"name": "DATEM DEL MARAÑON"
+		},
+		{
+			"co_department": 17,
+			"code": "01",
+			"name": "TAMBOPATA"
+		},
+		{
+			"co_department": 17,
+			"code": "02",
+			"name": "MANU"
+		},
+		{
+			"co_department": 17,
+			"code": "03",
+			"name": "TAHUAMANU"
+		},
+		{
+			"co_department": 18,
+			"code": "01",
+			"name": "MARISCAL NIETO"
+		},
+		{
+			"co_department": 18,
+			"code": "02",
+			"name": "GENERAL SANCHEZ CERRO"
+		},
+		{
+			"co_department": 18,
+			"code": "03",
+			"name": "ILO"
+		},
+		{
+			"co_department": 19,
+			"code": "01",
+			"name": "PASCO"
+		},
+		{
+			"co_department": 19,
+			"code": "02",
+			"name": "DANIEL ALCIDES CARRION"
+		},
+		{
+			"co_department": 19,
+			"code": "03",
+			"name": "OXAPAMPA"
+		},
+		{
+			"co_department": 20,
+			"code": "01",
+			"name": "PIURA"
+		},
+		{
+			"co_department": 20,
+			"code": "02",
+			"name": "AYABACA"
+		},
+		{
+			"co_department": 20,
+			"code": "03",
+			"name": "HUANCABAMBA"
+		},
+		{
+			"co_department": 20,
+			"code": "04",
+			"name": "MORROPON"
+		},
+		{
+			"co_department": 20,
+			"code": "05",
+			"name": "PAITA"
+		},
+		{
+			"co_department": 20,
+			"code": "06",
+			"name": "SULLANA"
+		},
+		{
+			"co_department": 20,
+			"code": "07",
+			"name": "TALARA"
+		},
+		{
+			"co_department": 20,
+			"code": "08",
+			"name": "SECHURA"
+		},
+		{
+			"co_department": 21,
+			"code": "01",
+			"name": "PUNO"
+		},
+		{
+			"co_department": 21,
+			"code": "02",
+			"name": "AZANGARO"
+		},
+		{
+			"co_department": 21,
+			"code": "03",
+			"name": "CARABAYA"
+		},
+		{
+			"co_department": 21,
+			"code": "04",
+			"name": "CHUCUITO"
+		},
+		{
+			"co_department": 21,
+			"code": "05",
+			"name": "EL COLLAO"
+		},
+		{
+			"co_department": 21,
+			"code": "06",
+			"name": "HUANCANE"
+		},
+		{
+			"co_department": 21,
+			"code": "07",
+			"name": "LAMPA"
+		},
+		{
+			"co_department": 21,
+			"code": "08",
+			"name": "MELGAR"
+		},
+		{
+			"co_department": 21,
+			"code": "09",
+			"name": "MOHO"
+		},
+		{
+			"co_department": 21,
+			"code": 10,
+			"name": "SAN ANTONIO DE PUTINA"
+		},
+		{
+			"co_department": 21,
+			"code": 11,
+			"name": "SAN ROMAN"
+		},
+		{
+			"co_department": 21,
+			"code": 12,
+			"name": "SANDIA"
+		},
+		{
+			"co_department": 21,
+			"code": 13,
+			"name": "YUNGUYO"
+		},
+		{
+			"co_department": 22,
+			"code": "01",
+			"name": "MOYOBAMBA"
+		},
+		{
+			"co_department": 22,
+			"code": "02",
+			"name": "BELLAVISTA"
+		},
+		{
+			"co_department": 22,
+			"code": "03",
+			"name": "EL DORADO"
+		},
+		{
+			"co_department": 22,
+			"code": "04",
+			"name": "HUALLAGA"
+		},
+		{
+			"co_department": 22,
+			"code": "05",
+			"name": "LAMAS"
+		},
+		{
+			"co_department": 22,
+			"code": "06",
+			"name": "MARISCAL CACERES"
+		},
+		{
+			"co_department": 22,
+			"code": "07",
+			"name": "PICOTA"
+		},
+		{
+			"co_department": 22,
+			"code": "08",
+			"name": "RIOJA"
+		},
+		{
+			"co_department": 22,
+			"code": "09",
+			"name": "SAN MARTIN"
+		},
+		{
+			"co_department": 22,
+			"code": 10,
+			"name": "TOCACHE"
+		},
+		{
+			"co_department": 23,
+			"code": "01",
+			"name": "TACNA"
+		},
+		{
+			"co_department": 23,
+			"code": "02",
+			"name": "CANDARAVE"
+		},
+		{
+			"co_department": 23,
+			"code": "03",
+			"name": "JORGE BASADRE"
+		},
+		{
+			"co_department": 23,
+			"code": "04",
+			"name": "TARATA"
+		},
+		{
+			"co_department": 24,
+			"code": "01",
+			"name": "TUMBES"
+		},
+		{
+			"co_department": 24,
+			"code": "02",
+			"name": "CONTRALMIRANTE VILLAR"
+		},
+		{
+			"co_department": 24,
+			"code": "03",
+			"name": "ZARUMILLA"
+		},
+		{
+			"co_department": 25,
+			"code": "01",
+			"name": "CORONEL PORTILLO"
+		},
+		{
+			"co_department": 25,
+			"code": "02",
+			"name": "ATALAYA"
+		},
+		{
+			"co_department": 25,
+			"code": "03",
+			"name": "PADRE ABAD"
+		},
+		{
+			"co_department": 25,
+			"code": "04",
+			"name": "PURUS"
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"data": {
+		"partnerTypeOptions": [
+			{ "value": "COLABORADOR", "label": "COLABORADOR" },
+			{ "value": "PROVEEDOR", "label": "PROVEEDOR" }
+		],
+		"docTypeOptions": [
+			{ "value": "DNI", "label": "DNI" },
+			{ "value": "CE", "label": "CARNE DE EXTRANJERÍA" },
+			{ "value": "PA", "label": "PASAPORTE" },
+			{ "value": "PTP", "label": "PTP" },
+			{ "value": "PR", "label": "PERMISO DE REFUGIO" }
+		]
+	}
+}

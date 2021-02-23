@@ -5,9 +5,10 @@ import {
     put,
     takeEvery
 } from 'redux-saga/effects';
-import {
-    auth
-} from '../../helpers/Firebase';
+
+import AuthService from '../../services/auth.service';
+import localStorage from '../../services/localStorageService';
+
 import {
     LOGIN_USER,
     REGISTER_USER,
@@ -16,11 +17,12 @@ import {
 
 import {
     loginUserSuccess,
-    registerUserSuccess
+    loginUserFailure,
+    registerUserSuccess,
 } from './actions';
 
 const loginWithEmailPasswordAsync = async (email, password) =>
-    await auth.signInWithEmailAndPassword(email, password)
+    await AuthService.loginWithEmailAndPassword(email, password)
     .then(authUser => authUser)
     .catch(error => error);
 
@@ -36,12 +38,13 @@ function* loginWithEmailPassword({
     } = payload;
     try {
         const loginUser = yield call(loginWithEmailPasswordAsync, email, password);
-        if (!loginUser.message) {
-            localStorage.setItem('user_id', loginUser.user.uid);
-            yield put(loginUserSuccess(loginUser));
+        if (!loginUser.data.message) {
+            localStorage.setItem('jwt_token', loginUser.data.token);
+            yield put(loginUserSuccess(loginUser.data.token));
             history.push('/');
         } else {
-            console.log('login failed :', loginUser.message)
+            console.log('login failed :', loginUser.data.message);
+            yield put(loginUserFailure(loginUser.data.message));
         }
     } catch (error) {
         console.log('login error : ', error)
@@ -49,7 +52,7 @@ function* loginWithEmailPassword({
 }
 
 const registerWithEmailPasswordAsync = async (email, password) =>
-    await auth.createUserWithEmailAndPassword(email, password)
+    await AuthService.createUserWithEmailAndPassword(email, password)
     .then(authUser => authUser)
     .catch(error => error);
 
@@ -65,12 +68,12 @@ function* registerWithEmailPassword({
     } = payload
     try {
         const registerUser = yield call(registerWithEmailPasswordAsync, email, password);
-        if (!registerUser.message) {
-            localStorage.setItem('user_id', registerUser.user.uid);
+        if (!registerUser.data.message) {
+            localStorage.setItem('jwt_token', registerUser.user.uid);
             yield put(registerUserSuccess(registerUser));
             history.push('/')
         } else {
-            console.log('register failed :', registerUser.message)
+            console.log('register failed :', registerUser.data.message)
         }
     } catch (error) {
         console.log('register error : ', error)
@@ -78,7 +81,7 @@ function* registerWithEmailPassword({
 }
 
 const logoutAsync = async (history) => {
-    await auth.signOut().then(authUser => authUser).catch(error => error);
+    await AuthService.signOut().then(authUser => authUser).catch(error => error);
     history.push('/')
 }
 
@@ -90,7 +93,7 @@ function* logout({
     } = payload
     try {
         yield call(logoutAsync, history);
-        localStorage.removeItem('user_id');
+        localStorage.removeItem('jwt_token');
     } catch (error) {}
 }
 

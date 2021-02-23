@@ -1,0 +1,104 @@
+{
+	"data": [
+  {
+    "code": "01",
+    "name": "AMAZONAS"
+  },
+  {
+    "code": "02",
+    "name": "ANCASH"
+  },
+  {
+    "code": "03",
+    "name": "APURIMAC"
+  },
+  {
+    "code": "04",
+    "name": "AREQUIPA"
+  },
+  {
+    "code": "05",
+    "name": "AYACUCHO"
+  },
+  {
+    "code": "06",
+    "name": "CAJAMARCA"
+  },
+  {
+    "code": "07",
+    "name": "CALLAO"
+  },
+  {
+    "code": "08",
+    "name": "CUSCO"
+  },
+  {
+    "code": "09",
+    "name": "HUANCAVELICA"
+  },
+  {
+    "code": 10,
+    "name": "HUANUCO"
+  },
+  {
+    "code": 11,
+    "name": "ICA"
+  },
+  {
+    "code": 12,
+    "name": "JUNIN"
+  },
+  {
+    "code": 13,
+    "name": "LA LIBERTAD"
+  },
+  {
+    "code": 14,
+    "name": "LAMBAYEQUE"
+  },
+  {
+    "code": 15,
+    "name": "LIMA"
+  },
+  {
+    "code": 16,
+    "name": "LORETO"
+  },
+  {
+    "code": 17,
+    "name": "MADRE DE DIOS"
+  },
+  {
+    "code": 18,
+    "name": "MOQUEGUA"
+  },
+  {
+    "code": 19,
+    "name": "PASCO"
+  },
+  {
+    "code": 20,
+    "name": "PIURA"
+  },
+  {
+    "code": 21,
+    "name": "PUNO"
+  },
+  {
+    "code": 22,
+    "name": "SAN MARTIN"
+  },
+  {
+    "code": 23,
+    "name": "TACNA"
+  },
+  {
+    "code": 24,
+    "name": "TUMBES"
+  },
+  {
+    "code": 25,
+    "name": "UCAYALI"
+  }
+]
+}

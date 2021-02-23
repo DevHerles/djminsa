@@ -10,8 +10,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "demo@gogo.com",
-      password: "gogo123"
+      email: "amoderator@email.com",
+      password: "password"
     };
   }
   onUserLogin() {
@@ -69,6 +69,7 @@ class Login extends Component {
                     <IntlMessages id="user.login-button" />
                   </Button>
                 </div>
+                <div>{this.props.error}</div>
               </Form>
             </div>
           </Card>
@@ -78,8 +79,8 @@ class Login extends Component {
   }
 }
 const mapStateToProps = ({ authUser }) => {
-  const { user, loading } = authUser;
-  return { user, loading };
+  const { user, loading, error } = authUser;
+  return { user, loading, error };
 };
 
 export default connect(

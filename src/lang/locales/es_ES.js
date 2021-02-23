@@ -44,12 +44,50 @@ module.exports = {
   "menu.profile": "Perfil",
   "menu.health": "Salud",
   "menu.symptoms": "Síntomas",
+  "menu.partner": "Usuarios",
   "menu.logout": "Salir",
+  "menu.new": "Nuevo",
+  /* Partner */
+  "partner.add-new": "AGREGAR NUEVO",
+  "partner.add-new-title": "Agregar nuevo socio",
+  "partner.title": "Título",
+  "partner.detail": "Detallle",
+  "partner.category": "Categoría",
+  "partner.label": "Etiqueta",
+  "partner.status": "Estado",
+  "partner.cancel": "Cancelar",
+  "partner.submit": "Submit",
+  "partner.action": "Acción",
+  "partner.another-action": "Otra acción",
+  "partner.display-options": "Opciones para mostrar",
+  "partner.orderby": "Ordenado por : ",
+  "partner.all-tasks": "Todos los socios",
+  "partner.pending-tasks": "Socios pendientes",
+  "partner.completed-tasks": "Socios completados",
+  "partner.categories": "Categorías",
+  "partner.labels": "Etiquetas",
+
   /* 04.Error  */
   "pages.error-title": "Vaya, parece que ha ocurrido un error!",
   "pages.error-code": "Código de error",
-  "pages.go-back-home": "REGRESAR A INICIO"
+  "pages.go-back-home": "REGRESAR A INICIO",
 
+  /* FORMS */
+  "forms.partner-type": "Tipo de socio",
+  "forms.doc-type": "Tipo de documento",
+  "forms.doc-number": "Número de documento",
+  "forms.first-name": "Apellido paterno",
+  "forms.last-name": "Apellido materno",
+  "forms.name": "Nombres",
+  "forms.dob": "Fecha de nacimiento",
+  "forms.assurance-type": "Tipo de seguro",
+  "forms.organ": "Órgano",
+  "forms.organic_unit": "Unidad orgánica",
+  "forms.functional-team": "Equipo funcional",
+  "forms.position": "Cargo",
+  "forms.entailment": "Modalidad de vinculación",
+  "forms.working-mode": "Modalidad de trabajo",
+  "forms.health-status-monitoring": "Seguimiento de estado de salud",
   /* 05 Health Page */
 
   /* 06 Symptoms Page */

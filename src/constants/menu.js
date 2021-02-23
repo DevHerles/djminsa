@@ -24,6 +24,12 @@ const data = [
     to: "/app/symptoms"
   },
   {
+    id: "partners",
+    icon: "iconsminds-bio-hazard",
+    label: "menu.partner",
+    to: "/app/partner"
+  },
+  {
     id: "logout",
     icon: "simple-icon-logout",
     label: "menu.logout",

@@ -9,7 +9,7 @@ import health from "./health";
 import profile from "./profile";
 import secondMenu from "./second-menu";
 import symptoms from "./symptoms";
-
+import partner from "./partner";
 class App extends Component {
   render() {
     const { match } = this.props;
@@ -23,6 +23,7 @@ class App extends Component {
           <Route path={`${match.url}/profile`} component={profile} />
           <Route path={`${match.url}/second-menu`} component={secondMenu} />
           <Route path={`${match.url}/symptoms`} component={symptoms} />
+          <Route path={`${match.url}/partner`} component={partner} />
           <Route path={`${match.url}/blank-page`} component={blankPage} />
           <Redirect to="/error" />
         </Switch>

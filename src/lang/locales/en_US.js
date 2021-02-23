@@ -45,12 +45,51 @@ module.exports = {
   "menu.profile": "Profile",
   "menu.health": "Health",
   "menu.symptoms": "Symptoms",
+  "menu.partner": "Partners",
   "menu.logout": "Logout",
+  "menu.new": "New",
+
+  /* Partner */
+  "partner.add-new": "ADD NEW",
+  "partner.add-new-title": "Add New Partner",
+  "partner.title": "Title",
+  "partner.detail": "Detail",
+  "partner.category": "Category",
+  "partner.label": "Label",
+  "partner.status": "Status",
+  "partner.cancel": "Cancel",
+  "partner.submit": "Submit",
+  "partner.action": "Action",
+  "partner.another-action": "Another action",
+  "partner.display-options": "Display Options",
+  "partner.orderby": "Order By : ",
+  "partner.all-tasks": "All Tasks",
+  "partner.pending-tasks": "Pending Tasks",
+  "partner.completed-tasks": "Completed Tasks",
+  "partner.categories": "Categories",
+  "partner.labels": "Labels",
 
   /* 04.Error Page */
   "pages.error-title": "Ooops... looks like an error occurred!",
   "pages.error-code": "Error code",
   "pages.go-back-home": "GO BACK HOME",
+
+  /* FORMS */
+  "forms.partner-type": "Partner type",
+  "forms.doc-type": "Document type",
+  "forms.doc-number": "Document number",
+  "forms.first-name": "First name",
+  "forms.last-name": "Last name",
+  "forms.name": "Name",
+  "forms.dob": "Date of bird",
+  "forms.assurance-type": "Assurance type",
+  "forms.organ": "Organ",
+  "forms.organic_unit": "Organic Unit",
+  "forms.functional-team": "Functional team",
+  "forms.position": "Position",
+  "forms.entailment": "Entailment",
+  "forms.working-mode": "Working mode",
+  "forms.health-status-monitoring": "Health status monitoring",
 
   /* 05 Health Page */
   
