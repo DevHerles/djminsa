@@ -1,109 +1,64 @@
-import { Field, Form } from "formik";
 import React, { Component, Fragment } from "react";
 import { injectIntl } from "react-intl";
-// import { useNavigate } from 'react-router-dom';
-
 import {
-  Alert,
   Button,
   ButtonDropdown,
-  Card,
-  CardBody,
   Collapse,
   CustomInput,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
-  FormGroup,
-  Label,
   Row,
-  UncontrolledAlert,
   UncontrolledDropdown,
 } from "reactstrap";
 
-import { Colxx, Separator } from "../../../components/common/CustomBootstrap";
 import {
-  FormikCustomCheckbox,
-  FormikRadioButtonGroup,
-} from "../../../containers/form-validations/FormikFields";
-import Breadcrumb from "../../../containers/navs/Breadcrumb";
-import IntlMessages from "../../../helpers/IntlMessages";
+  Colxx,
+  Separator,
+} from "../../../../components/common/CustomBootstrap";
+import Breadcrumb from "../../../../containers/navs/Breadcrumb";
+import IntlMessages from "../../../../helpers/IntlMessages";
 
-import AddNewPartnerModal from "./AddNewPartnerModal";
-import PartnerListItem from "./ListItem";
-import PartnerApplicationMenu from "./PartnerApplicationMenu";
+import ListItem from "./list.item";
+import FormMenu from "./panel";
 
-const options = [
-  { value: "si", label: "SI" },
-  { value: "no", label: "NO" },
-];
-
-const questions = [
-  { id: "q1", label: "1. Hipertensión arterial no controlada (*)" },
-  { id: "q2", label: "2. Enfermedades cardiovasculares graves (*)" },
-  { id: "q3", label: "3. Diabetes Mellitus (*)" },
-  {
-    id: "q4",
-    label: "4. Obesidad con IMC de 40 a mas (*)",
-    help:
-      "El índice de masa corporal (IMC) se determina usando la formula peso(kg) / estatura(m)^2 Ejemplo: Peso 68 kg, Estatura = 1.66 m, Cálculo IMC = 68 / (1.65)(1.65) = 24.98",
-  },
-  { id: "q5", label: "5. Cáncer (*)" },
-  { id: "q6", label: "6. Asma moderada o grave (*)" },
-  { id: "q7", label: "7. Enfermedad pulmonar crónica (*)" },
-  {
-    id: "q8",
-    label: "8. Insuficiencia renal crónica en tratamiento con hemodiálisis (*)",
-  },
-  { id: "q9", label: "9. Enfermedad o tratamiento inmunosupresor (*)" },
-  { id: "q10", label: "10. Edad mayor de 65 años (*)" },
-  { id: "q11", label: "11. Gestación (*)" },
-  { id: "q12", label: "12. Otros (*)" },
-];
-
-class PartnerFormComponent extends Component {
+class ListView extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       dropdownSplitOpen: false,
-      modalOpen: false,
       lastChecked: null,
-
       displayOptionsIsOpen: false,
+      modalOpen: false,
     };
   }
 
   componentDidMount() {
-    this.props.getPartnerList();
+    this.props.getListHealthAction();
   }
 
-  toggleDisplayOptions = () => {
+  toogleDisplayOptions = () => {
     this.setState({ displayOptionsIsOpen: !this.state.displayOptionsIsOpen });
   };
 
-  toggleModal = () => {
-    // let navigate = useNavigate();
+  openNewForm = () => {
+    console.log("xxxx");
     this.props.history.push("new");
-    // navigate('/');
-    // this.setState({
-    //   modalOpen: !this.state.modalOpen
-    // });
   };
 
-  toggleSplit = () => {
+  toogleSplit = () => {
     this.setState((prevState) => ({
       dropdownSplitOpen: !prevState.dropdownSplitOpen,
     }));
   };
 
   changeOrderBy = (column) => {
-    this.props.getPartnerListWithOrder(column);
+    this.props.getListWithOrder(column);
   };
 
-  handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      this.props.getPartnerListSearch(e.target.value);
+  handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      this.props.getListSearch(event.target.value);
     }
   };
 
@@ -112,18 +67,19 @@ class PartnerFormComponent extends Component {
       this.setState({ lastChecked: id });
     }
 
-    let selectedItems = Object.assign([], this.props.partnerApp.selectedItems);
+    let selectedItems = Object.assign([], this.props.data.selectedItems);
     if (selectedItems.includes(id)) {
-      selectedItems = selectedItems.filter((x) => x !== id);
+      selectedItems = selectedItems.filter((_id) => _id !== id);
     } else {
       selectedItems.push(id);
     }
-    this.props.selectedPartnerItemsChange(selectedItems);
+
+    this.props.selectedItemsChange(selectedItems);
 
     if (event.shiftKey) {
-      var items = this.props.partnerApp.partnerItems;
-      var start = this.getIndex(id, items, "id");
-      var end = this.getIndex(this.state.lastChecked, items, "id");
+      let items = this.props.data.items;
+      let start = this.getIndex(id, items, "id");
+      let end = this.getIndex(this.state.lastChecked, items, "id");
       items = items.slice(Math.min(start, end), Math.max(start, end) + 1);
       selectedItems.push(
         ...items.map((item) => {
@@ -131,92 +87,80 @@ class PartnerFormComponent extends Component {
         })
       );
       selectedItems = Array.from(new Set(selectedItems));
-      this.props.selectedPartnerItemsChange(selectedItems);
+      this.props.selectedItemsChange(selectedItems);
     }
     return;
   };
 
   handleChangeSelectAll = () => {
-    if (this.props.partnerApp.loading) {
+    if (this.props.data.loading) {
       if (
-        this.props.partnerApp.selectedItems.length >=
-        this.props.partnerApp.partnerItems.length
+        this.props.data.selectedItems.lenght >= this.props.data.items.lenght
       ) {
-        this.props.selectedPartnerItemsChange([]);
+        this.props.selectedItemsChange([]);
       } else {
-        this.props.selectedPartnerItemsChange(
-          this.props.partnerApp.partnerItems.map((x) => x.id)
+        this.props.selectedItemsChange(
+          this.props.data.items.map((item) => item.id)
         );
       }
     }
   };
 
-  getIndex(value, arr, prop) {
-    for (var i = 0; i < arr.length; i++) {
+  getIndex = (value, arr, prop) => {
+    for (let i = 0; i < arr.lenght; i++) {
       if (arr[i][prop] === value) {
         return i;
       }
     }
     return -1;
-  }
+  };
+
   render() {
     const {
-      values,
-      isSubmitting,
-      isValid,
-      setFieldValue,
-      setFieldTouched,
-      errors,
-      touched,
-    } = this.props;
-
-    const {
-      partnerItems,
+      items,
       searchKeyword,
       loading,
       orderColumn,
       orderColumns,
       selectedItems,
-    } = this.props.partnerApp;
-
+    } = this.props.data;
+    console.log("loading:", loading);
     const { messages } = this.props.intl;
-    const { modalOpen } = this.state;
-
     return (
       <Fragment>
         <Row className="app-row survey-app">
           <Colxx xxs="12">
             <div className="mb-2">
               <h1>
-                <IntlMessages id="menu.partner" />
+                <IntlMessages id="menu.healths" />
               </h1>
-              {loading && (
+              {!loading && (
                 <div className="float-sm-right">
                   <Button
                     color="primary"
                     size="lg"
                     className="top-right-button"
-                    onClick={this.toggleModal}
+                    onClick={this.openNewForm}
                   >
-                    <IntlMessages id="partner.add-new" />
+                    <IntlMessages id="health.add-new" />
                   </Button>{" "}
                   <ButtonDropdown
                     isOpen={this.state.dropdownSplitOpen}
-                    toggle={this.toggleSplit}
+                    toggle={this.toogleSplit}
                   >
                     <div className="btn btn-primary pl-4 pr-0 check-button check-all">
                       <CustomInput
                         className="custom-checkbox mb-0 d-inline-block"
                         type="checkbox"
                         id="checkAll"
-                        checked={selectedItems.length >= partnerItems.length}
+                        checked={selectedItems.lenght >= items.lenght}
                         onClick={() => this.handleChangeSelectAll()}
                         onChange={() => this.handleChangeSelectAll()}
                         label={
                           <span
                             className={`custom-control-label ${
                               selectedItems.length > 0 &&
-                              selectedItems.length < partnerItems.length
+                              selectedItems.length < items.length
                                 ? "indeterminate"
                                 : ""
                             }`}
@@ -231,10 +175,10 @@ class PartnerFormComponent extends Component {
                     />
                     <DropdownMenu right>
                       <DropdownItem>
-                        <IntlMessages id="partner.action" />
+                        <IntlMessages id="health.action" />
                       </DropdownItem>
                       <DropdownItem>
-                        <IntlMessages id="partner.another-action" />
+                        <IntlMessages id="health.another-action" />
                       </DropdownItem>
                     </DropdownMenu>
                   </ButtonDropdown>
@@ -242,7 +186,6 @@ class PartnerFormComponent extends Component {
               )}
               <Breadcrumb match={this.props.match} />
             </div>
-
             <div className="mb-2">
               <Button
                 color="empty"
@@ -291,30 +234,21 @@ class PartnerFormComponent extends Component {
             </div>
             <Separator className="mb-5" />
             <Row>
-              {loading ? (
-                partnerItems.map((item, index) => (
-                  <PartnerListItem
-                    key={`partner_item_${index}`}
-                    item={item}
-                    handleCheckChange={this.handleCheckChange}
-                    isSelected={
-                      loading ? selectedItems.includes(item.id) : false
-                    }
-                  />
-                ))
-              ) : (
-                <div className="loading" />
-              )}
+              {" "}
+              {items.map((item, index) => (
+                <ListItem
+                  key={`list_item_${index}`}
+                  item={item}
+                  handleCheckChange={this.handleCheckChange}
+                  isSelected={loading ? selectedItems.includes(item.id) : false}
+                />
+              ))}
             </Row>
           </Colxx>
         </Row>
-        {loading && <PartnerApplicationMenu />}
-        <AddNewPartnerModal
-          toggleModal={this.toggleModal}
-          modalOpen={modalOpen}
-        />
+        {loading && <FormMenu />}{" "}
       </Fragment>
     );
   }
 }
-export default PartnerFormComponent;
+export default injectIntl(ListView);

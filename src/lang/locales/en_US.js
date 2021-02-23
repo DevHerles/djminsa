@@ -8,7 +8,6 @@ Table of Contents
 04.Error Page
 */
 
-
 module.exports = {
   /* 01.General */
   "general.copyright": "Gogo React © 2018 All Rights Reserved.",
@@ -43,11 +42,33 @@ module.exports = {
   "menu.docs": "Docs",
   "menu.blank-page": "Blank Page",
   "menu.profile": "Profile",
+  "menu.healths": "My Healths",
   "menu.health": "Health",
   "menu.symptoms": "Symptoms",
   "menu.partner": "Partners",
+  "menu.new-partner": "New partner",
   "menu.logout": "Logout",
   "menu.new": "New",
+
+  /* HEALTH */
+  "health.add-new": "ADD NEW",
+  "health.add-new-title": "Add New health",
+  "health.title": "Title",
+  "health.detail": "Detail",
+  "health.category": "Category",
+  "health.label": "Label",
+  "health.status": "Status",
+  "health.cancel": "Cancel",
+  "health.submit": "Submit",
+  "health.action": "Action",
+  "health.another-action": "Another action",
+  "health.display-options": "Display Options",
+  "health.orderby": "Order By : ",
+  "health.all-tasks": "All Tasks",
+  "health.pending-tasks": "Pending Tasks",
+  "health.completed-tasks": "Completed Tasks",
+  "health.categories": "Categories",
+  "health.labels": "Labels",
 
   /* Partner */
   "partner.add-new": "ADD NEW",
@@ -92,7 +113,6 @@ module.exports = {
   "forms.health-status-monitoring": "Health status monitoring",
 
   /* 05 Health Page */
-  
-  /* 06 Symptoms Page */
 
+  /* 06 Symptoms Page */
 };

@@ -18,13 +18,6 @@ import { NotificationManager } from "../../../components/common/react-notificati
 
 import partnerForm from "../../../data/partnerForm.json";
 
-const docTypeOptions = [
-    { "value": "DNI", "label": "DNI" },
-    { "value": "CE", "label": "CARNE DE EXTRANJERÍA" },
-    // { "value": "PA", "label": "PASAPORTE" },
-    // { "value": "PTP", "label": "PTP" },
-    // { "value": "PR", "label": "PERMISO DE REFUGIO" }
-]
 class NewEditComponent extends Component {
     createNotification = (type, className) => {
         let cName = className || "";
@@ -90,7 +83,7 @@ class NewEditComponent extends Component {
               break;
           }
         };
-      };
+    };
     render() {
         const {
             values,
@@ -107,7 +100,7 @@ class NewEditComponent extends Component {
             <Fragment>
             <Row>
               <Colxx xxs="12">
-                <Breadcrumb heading="menu.partner" match={this.props.match} />
+                <Breadcrumb heading="menu.new-partner" match={this.props.match} />
                 <Separator className="mb-5" />
               </Colxx>
             </Row>
@@ -122,7 +115,7 @@ class NewEditComponent extends Component {
                                 </UncontrolledAlert>
                             : null}
                             <Form className="av-tooltip tooltip-label-right">
-                                {/* <FormGroup className="form-group has-float-label">
+                                <FormGroup className="form-group has-float-label">
                                     <Label>
                                     <IntlMessages id="forms.partner-type" />
                                     </Label>
@@ -130,7 +123,7 @@ class NewEditComponent extends Component {
                                     name="partnerType"
                                     id="partnerType"
                                     value={values.partnerType}
-                                    options={partnerTypeOptions}
+                                    options={partnerForm.data.partnerTypeOptions}
                                     onChange={setFieldValue}
                                     onBlur={setFieldTouched}
                                     />
@@ -139,7 +132,7 @@ class NewEditComponent extends Component {
                                         {errors.partnerType}
                                     </div>
                                     ) : null}
-                                </FormGroup> */}
+                                </FormGroup>
                                 <FormGroup className="form-group has-float-label">
                                     <Label>
                                     <IntlMessages id="forms.doc-type" />
@@ -148,7 +141,7 @@ class NewEditComponent extends Component {
                                     name="docType"
                                     id="docType"
                                     value={values.docType}
-                                    options={docTypeOptions}
+                                    options={partnerForm.data.docTypeOptions}
                                     onChange={setFieldValue}
                                     onBlur={setFieldTouched}
                                     />
@@ -164,19 +157,19 @@ class NewEditComponent extends Component {
                                     </Label>
                                     <Field
                                     className="form-control"
-                                    name="docNumber"
-                                    id="docNumber"
-                                    value={values.docNumber}
+                                    name="doc_number"
+                                    id="doc_number"
+                                    value={values.doc_number}
                                     onChange={setFieldValue}
                                     onBlur={setFieldTouched}
                                     />
-                                    {errors.docNumber && touched.docNumber ? (
+                                    {errors.doc_number && touched.doc_number ? (
                                     <div className="invalid-feedback d-block">
-                                        {errors.docNumber}
+                                        {errors.doc_number}
                                     </div>
                                     ) : null}
                                 </FormGroup>
-                                {/* <FormGroup className="form-group has-float-label">
+                                <FormGroup className="form-group has-float-label">
                                     <Label className="d-block">
                                     <IntlMessages id="forms.dob" />
                                     </Label>
@@ -191,24 +184,25 @@ class NewEditComponent extends Component {
                                         {errors.dob}
                                     </div>
                                     ) : null}
-                                </FormGroup> */}
-
-                                {/* <FormGroup className="error-l-250">
-                                    <h4>
-                                    <FormikCustomCheckbox
-                                        name="q13"
-                                        value={values.q13}
-                                        label="He leído y confirmo la Declaración Jurada de Salud (*)"
-                                        onChange={setFieldValue}
-                                        onBlur={setFieldTouched}
+                                </FormGroup>
+                                <FormGroup className="form-group has-float-label">
+                                    <Label>
+                                    <IntlMessages id="forms.first-name" />
+                                    </Label>
+                                    <Field
+                                    className="form-control"
+                                    name="first_name"
+                                    id="first_name"
+                                    value={values.first_name}
+                                    onChange={setFieldValue}
+                                    onBlur={setFieldTouched}
                                     />
-                                    </h4>
-                                    {errors.q13 && touched.q13 ? (
-                                        <div className="invalid-feedback d-block">
-                                        <h5>{errors.q13}</h5>
-                                        </div>
+                                    {errors.first_name && touched.first_name ? (
+                                    <div className="invalid-feedback d-block">
+                                        {errors.first_name}
+                                    </div>
                                     ) : null}
-                                </FormGroup> */}
+                                </FormGroup>
                                 <br></br>
                                 {!isValid ?
                                     <UncontrolledAlert color="danger" fade={false}>

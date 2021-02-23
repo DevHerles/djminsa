@@ -26,17 +26,17 @@ import partners from "../../data/partners.json";
 import partnerService from '../../services/partner.service';
 
 const getPartnerListRequest = async () => {
-    return await partnerService.getAll()
-    .then(partner => partner)
-    .catch(error => error);
+    // return await partnerService.getAll()
+    // .then(partner => partner)
+    // .catch(error => error);
 
-    // return await new Promise((success, fail) => {
-    //         setTimeout(() => {
-    //             success(partners.data);
-    //         }, 1000);
-    //     })
-    //     .then(response => response)
-    //     .catch(error => error);
+    return await new Promise((success, fail) => {
+            setTimeout(() => {
+                success(partners.data);
+            }, 1000);
+        })
+        .then(response => response)
+        .catch(error => error);
 };
 
 function* getPartnerListItems() {

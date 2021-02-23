@@ -42,11 +42,34 @@ module.exports = {
   "menu.docs": "Docs",
   "menu.blank-page": "Blank Page",
   "menu.profile": "Perfil",
+  "menu.healths": "Mis declaraciones juradas de salud",
   "menu.health": "Salud",
   "menu.symptoms": "Síntomas",
   "menu.partner": "Usuarios",
+  "menu.new-partner": "Nuevo socio",
   "menu.logout": "Salir",
   "menu.new": "Nuevo",
+
+  /* HEALTH */
+  "health.add-new": "AGREGAR NUEVO",
+  "health.add-new-title": "Agregar nueva declaración jurada de salud",
+  "health.title": "Título",
+  "health.detail": "Detallle",
+  "health.category": "Categoría",
+  "health.label": "Etiqueta",
+  "health.status": "Estado",
+  "health.cancel": "Cancelar",
+  "health.submit": "Submit",
+  "health.action": "Acción",
+  "health.another-action": "Otra acción",
+  "health.display-options": "Opciones para mostrar",
+  "health.orderby": "Ordenado por : ",
+  "health.filter-all": "Todas las declaraciones juradas",
+  "health.filter-pending": "Declaraciones pendientes",
+  "health.filter-completed": "Declaraciones completados",
+  "health.categories": "Categorías",
+  "health.labels": "Etiquetas",
+
   /* Partner */
   "partner.add-new": "AGREGAR NUEVO",
   "partner.add-new-title": "Agregar nuevo socio",
@@ -91,5 +114,4 @@ module.exports = {
   /* 05 Health Page */
 
   /* 06 Symptoms Page */
-
 };
