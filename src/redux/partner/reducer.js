@@ -12,8 +12,8 @@ import {
 } from "../actions";
 
 const INIT_STATE = {
-  allItems: null,
-  items: null,
+  allItems: [],
+  items: [],
   new: {
     first_name: "",
     last_name: "",
@@ -65,8 +65,8 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         loading: false,
-        allPartnerItems: action.payload,
-        partnerItems: action.payload,
+        allItems: action.payload,
+        items: action.payload,
       };
 
     case PARTNER_GET_LIST_ERROR:
@@ -77,17 +77,17 @@ export default (state = INIT_STATE, action) => {
         return {
           ...state,
           loading: true,
-          partnerItems: state.allPartnerItems,
+          items: state.allItems,
           filter: null,
         };
       } else {
-        const filteredItems = state.allPartnerItems.filter(
+        const filteredItems = state.allItems.filter(
           (item) => item[action.payload.column] === action.payload.value
         );
         return {
           ...state,
           loading: true,
-          partnerItems: filteredItems,
+          items: filteredItems,
           filter: {
             column: action.payload.column,
             value: action.payload.value,
@@ -100,11 +100,11 @@ export default (state = INIT_STATE, action) => {
         return {
           ...state,
           loading: true,
-          partnerItems: state.partnerItems,
+          items: state.items,
           orderColumn: null,
         };
       } else {
-        const sortedItems = state.partnerItems.sort((a, b) => {
+        const sortedItems = state.items.sort((a, b) => {
           if (a[action.payload] < b[action.payload]) return -1;
           else if (a[action.payload] > b[action.payload]) return 1;
           return 0;
@@ -112,7 +112,7 @@ export default (state = INIT_STATE, action) => {
         return {
           ...state,
           loading: true,
-          partnerItems: sortedItems,
+          items: sortedItems,
           orderColumn: state.orderColumns.find(
             (x) => x.column === action.payload
           ),
@@ -121,10 +121,10 @@ export default (state = INIT_STATE, action) => {
 
     case PARTNER_GET_LIST_SEARCH:
       if (action.payload === "") {
-        return { ...state, partnerItems: state.allPartnerItems };
+        return { ...state, items: state.allItems };
       } else {
         const keyword = action.payload.toLowerCase();
-        const searchItems = state.allPartnerItems.filter(
+        const searchItems = state.allItems.filter(
           (item) =>
             item.title.toLowerCase().indexOf(keyword) > -1 ||
             item.detail.toLowerCase().indexOf(keyword) > -1 ||
@@ -135,7 +135,7 @@ export default (state = INIT_STATE, action) => {
         return {
           ...state,
           loading: true,
-          partnerItems: searchItems,
+          items: searchItems,
           searchKeyword: action.payload,
         };
       }
@@ -147,8 +147,8 @@ export default (state = INIT_STATE, action) => {
       return {
         ...state,
         loading: false,
-        allPartnerItems: action.payload,
-        partnerItems: action.payload,
+        allItems: action.payload,
+        items: action.payload,
       };
 
     case PARTNER_ADD_ITEM_ERROR:

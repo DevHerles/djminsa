@@ -9,7 +9,7 @@ const Health = ({ match }) => (
     <Switch>
       <Redirect exact from={`${match.url}/`} to={`${match.url}/start`} />
       <Route path={`${match.url}/start`} component={ListView} />
-      <Route path={` $ { match.url } /new`} component={FormView} />
+      <Route path={`${ match.url}/new`} component={FormView} />
       <Redirect to="/error" />
     </Switch>
   </div>

@@ -38,7 +38,7 @@ const FormSchema = Yup.object().shape({
 const formikEnhancer = withFormik({
     validationSchema: () => FormSchema,
     enableReinitialize: true,
-    mapPropsToValues: (props) => props.initialValues,
+    mapPropsToValues: (props) => props.data,
     handleSubmit: (values, formikBag) => {
         formikBag.setSubmitting(false);
         formikBag.props.addPartnerItem(values);
@@ -47,7 +47,7 @@ const formikEnhancer = withFormik({
 })(FormComponent);
 
 const maptStateToProps = state => ({
-    initialValues: state.partner.new,
+    data: state.partner,
     addError: state.partner.error,
 });
 

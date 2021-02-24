@@ -246,7 +246,7 @@ class ListView extends Component {
             </Row>
           </Colxx>
         </Row>
-        {loading && <FormMenu />}{" "}
+        {!loading && <FormMenu />}{" "}
       </Fragment>
     );
   }

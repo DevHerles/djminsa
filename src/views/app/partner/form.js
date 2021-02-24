@@ -121,7 +121,7 @@ class PartnerFormComponent extends Component {
     this.props.selectedPartnerItemsChange(selectedItems);
 
     if (event.shiftKey) {
-      var items = this.props.partnerApp.partnerItems;
+      var items = this.props.partnerApp.items;
       var start = this.getIndex(id, items, "id");
       var end = this.getIndex(this.state.lastChecked, items, "id");
       items = items.slice(Math.min(start, end), Math.max(start, end) + 1);
@@ -140,12 +140,12 @@ class PartnerFormComponent extends Component {
     if (this.props.partnerApp.loading) {
       if (
         this.props.partnerApp.selectedItems.length >=
-        this.props.partnerApp.partnerItems.length
+        this.props.partnerApp.items.length
       ) {
         this.props.selectedPartnerItemsChange([]);
       } else {
         this.props.selectedPartnerItemsChange(
-          this.props.partnerApp.partnerItems.map((x) => x.id)
+          this.props.partnerApp.items.map((x) => x.id)
         );
       }
     }
@@ -171,13 +171,13 @@ class PartnerFormComponent extends Component {
     } = this.props;
 
     const {
-      partnerItems,
+      items,
       searchKeyword,
       loading,
       orderColumn,
       orderColumns,
       selectedItems,
-    } = this.props.partnerApp;
+    } = this.props.data;
 
     const { messages } = this.props.intl;
     const { modalOpen } = this.state;
@@ -190,7 +190,7 @@ class PartnerFormComponent extends Component {
               <h1>
                 <IntlMessages id="menu.partner" />
               </h1>
-              {loading && (
+              {!loading && (
                 <div className="float-sm-right">
                   <Button
                     color="primary"
@@ -209,14 +209,14 @@ class PartnerFormComponent extends Component {
                         className="custom-checkbox mb-0 d-inline-block"
                         type="checkbox"
                         id="checkAll"
-                        checked={selectedItems.length >= partnerItems.length}
+                        checked={selectedItems.length >= items.length}
                         onClick={() => this.handleChangeSelectAll()}
                         onChange={() => this.handleChangeSelectAll()}
                         label={
                           <span
                             className={`custom-control-label ${
                               selectedItems.length > 0 &&
-                              selectedItems.length < partnerItems.length
+                              selectedItems.length < items.length
                                 ? "indeterminate"
                                 : ""
                             }`}
@@ -291,8 +291,8 @@ class PartnerFormComponent extends Component {
             </div>
             <Separator className="mb-5" />
             <Row>
-              {loading ? (
-                partnerItems.map((item, index) => (
+              {!loading ? (
+                items.map((item, index) => (
                   <PartnerListItem
                     key={`partner_item_${index}`}
                     item={item}
@@ -308,7 +308,7 @@ class PartnerFormComponent extends Component {
             </Row>
           </Colxx>
         </Row>
-        {loading && <PartnerApplicationMenu />}
+        {!loading && <PartnerApplicationMenu />}
         <AddNewPartnerModal
           toggleModal={this.toggleModal}
           modalOpen={modalOpen}

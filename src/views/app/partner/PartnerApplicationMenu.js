@@ -19,13 +19,13 @@ class PartnerApplicationMenu extends Component {
 
   render() {
     const {
-      partnerItems,
+      items,
       filter,
-      allPartnerItems,
+      allItems,
       loading,
       labels,
       categories
-    } = this.props.partnerApp;
+    } = this.props.data;
 
     return (
       <ApplicationMenu>
@@ -42,7 +42,7 @@ class PartnerApplicationMenu extends Component {
                   <i className="simple-icon-reload" />
                   <IntlMessages id="partner.all-tasks" />
                   <span className="float-right">
-                    {loading && allPartnerItems.length}
+                    {loading && allItems.length}
                   </span>
                 </NavLink>
               </NavItem>
@@ -62,7 +62,7 @@ class PartnerApplicationMenu extends Component {
                   <IntlMessages id="partner.pending-tasks" />
                   <span className="float-right">
                     {loading &&
-                      partnerItems.filter(x => x.status === "PENDING").length}
+                      items.filter(x => x.status === "PENDING").length}
                   </span>
                 </NavLink>
               </NavItem>
@@ -82,7 +82,7 @@ class PartnerApplicationMenu extends Component {
                   <IntlMessages id="partner.completed-tasks" />
                   <span className="float-right">
                     {loading &&
-                      partnerItems.filter(x => x.status === "COMPLETED").length}
+                      items.filter(x => x.status === "COMPLETED").length}
                   </span>
                 </NavLink>
               </NavItem>
@@ -150,7 +150,7 @@ class PartnerApplicationMenu extends Component {
 
 const mapStateToProps = state => {
   return {
-    partnerApp: state.partner,
+    data: state.partner,
   };
 };
 export default connect(

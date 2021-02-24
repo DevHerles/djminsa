@@ -38,7 +38,7 @@ const PartnerSchema = Yup.object().shape({
 const formikEnhancer = withFormik({
     validationSchema: () => PartnerSchema,
     enableReinitialize: true,
-    mapPropsToValues: (props) => props.newPartner,
+    mapPropsToValues: (props) => props.data.new,
     handleSubmit: (values, formikBag) => {
         formikBag.setSubmitting(false);
         formikBag.props.addPartnerAction(values);
@@ -47,7 +47,7 @@ const formikEnhancer = withFormik({
 })(PartnerFormComponent);
 
 const maptStateToProps = (state) => ({
-    partnerApp: state.partner,
+    data: state.partner,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
