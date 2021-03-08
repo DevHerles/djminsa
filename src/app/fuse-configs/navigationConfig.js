@@ -4,7 +4,7 @@ const navigationConfig = [
         'title': 'Perfil',
         'type' : 'item',
         'icon' : 'whatshot',
-        'url'  : '/profile'
+        'url'  : '/apps/profiles'
     },
     {
         'id'      : 'dj',
