@@ -7,7 +7,6 @@ import {pagesConfig} from 'app/main/pages/pagesConfig';
 import {LoginConfig} from 'app/main/login/LoginConfig';
 // import {RegisterConfig} from 'app/main/register/RegisterConfig';
 import {LogoutConfig} from 'app/main/logout/LogoutConfig';
-import {CallbackConfig} from 'app/main/callback/CallbackConfig';
 
 const routeConfigs = [
     ...appsConfig,
@@ -16,7 +15,6 @@ const routeConfigs = [
     LoginConfig,
     // RegisterConfig,
     LogoutConfig,
-    CallbackConfig
 ];
 
 const routes = [
@@ -24,7 +22,7 @@ const routes = [
     {
         path: '/',
         exact: true,
-        component: () => <Redirect to="/example"/>
+        component: () => <Redirect to="/apps/profiles"/>
     },
     {
         component: () => <Redirect to="/pages/errors/error-404"/>

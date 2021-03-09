@@ -65,12 +65,10 @@ class jwtService extends FuseUtils.EventEmitter {
       }).then(response => {
         console.log(response.data.user);
         if (response.data.user) {
-          console.log('aaaa');
           this.setSession(response.data.access_token);
           resolve(response.data.user);
         }
         else {
-          console.log('bbbb');
           reject(response.data.error);
         }
       });

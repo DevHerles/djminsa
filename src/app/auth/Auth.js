@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import * as userActions from 'app/auth/store/actions';
 import { bindActionCreators } from 'redux';
 import * as Actions from 'app/store/actions';
-import firebaseService from 'app/services/firebaseService';
-import auth0Service from 'app/services/auth0Service';
 import jwtService from 'app/services/jwtService';
 
 class Auth extends Component {
@@ -57,46 +55,6 @@ class Auth extends Component {
     jwtService.init();
   };
 
-  auth0Check = () => {
-
-    auth0Service.init();
-
-    if (auth0Service.isAuthenticated()) {
-      this.props.showMessage({ message: 'Logging in with Auth0' });
-
-      /**
-       * Retrieve user data from Auth0
-       */
-      auth0Service.getUserData().then(tokenData => {
-
-        this.props.setUserDataAuth0(tokenData);
-
-        this.props.showMessage({ message: 'Logged in with Auth0' });
-      })
-    }
-  };
-
-  firebaseCheck = () => {
-
-    firebaseService.init();
-
-    firebaseService.onAuthStateChanged(authUser => {
-      if (authUser) {
-        this.props.showMessage({ message: 'Logging in with Firebase' });
-
-        /**
-         * Retrieve user data from Firebase
-         */
-        firebaseService.getUserData(authUser.uid).then(user => {
-
-          this.props.setUserDataFirebase(user, authUser);
-
-          this.props.showMessage({ message: 'Logged in with Firebase' });
-        })
-      }
-    });
-  };
-
   render() {
     const { children } = this.props;
 
@@ -112,8 +70,6 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     logout: userActions.logoutUser,
     setUserData: userActions.setUserData,
-    setUserDataAuth0: userActions.setUserDataAuth0,
-    setUserDataFirebase: userActions.setUserDataFirebase,
     showMessage: Actions.showMessage,
     hideMessage: Actions.hideMessage
   },

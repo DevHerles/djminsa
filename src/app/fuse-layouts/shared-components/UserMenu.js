@@ -80,7 +80,7 @@ function UserMenu(props)
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
-                        <MenuItem component={Link} to="/pages/profile" onClick={userMenuClose}>
+                        <MenuItem component={Link} to="/apps/profiles" onClick={userMenuClose}>
                             <ListItemIcon className="min-w-40">
                                 <Icon>account_circle</Icon>
                             </ListItemIcon>
