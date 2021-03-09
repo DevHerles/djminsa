@@ -18,10 +18,7 @@ function FormHeader (props) {
         <div className="flex items-center justify-end">
             <Button className="mr-8 normal-case" variant="contained" color="secondary" aria-label="Follow"
               onClick={onSubmit}
-            >Submit</Button>
-            <Button className="normal-case" variant="contained" color="primary" aria-label="Send Message"
-              onClick={onReset}
-            >Resete</Button>
+            >Guardar</Button>
         </div>
     </div>
   );

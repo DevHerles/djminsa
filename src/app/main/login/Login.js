@@ -20,15 +20,19 @@ function Login() {
     <div className={clsx(classes.root, "flex flex-col flex-1 flex-shrink-0 p-24 md:flex-row md:p-0")}>
       <div className="flex flex-col flex-grow-0 items-center text-white p-16 text-center md:p-128 md:items-start md:flex-shrink-0 md:flex-1 md:text-left">
         <FuseAnimate animation="transition.expandIn">
-          <img className="w-128 mb-32" src="assets/images/logos/fuse.svg" alt="logo" />
+          <img className="w-158 mb-32" src="assets/images/logos/logo.jpg" alt="logo" />
         </FuseAnimate>
 
         <FuseAnimate animation="transition.slideUpIn" delay={300}>
           <Typography variant="h3" color="inherit" className="font-light">
-            Welcome to the MINSA!
+            Bienvenido a MINSA!
           </Typography>
         </FuseAnimate>
-
+        <FuseAnimate animation="transition.slideUpIn" delay={300}>
+          <Typography variant="h4" color="inherit" className="font-light">
+            Declaraciones juradas
+          </Typography>
+        </FuseAnimate>
         <FuseAnimate delay={400}>
           <Typography variant="subtitle1" color="inherit" className="max-w-512 mt-16">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat, vel convallis elit fermentum pellentesque. Sed mollis velit

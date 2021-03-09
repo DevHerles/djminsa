@@ -11,7 +11,7 @@ export const SET_PARTNERS_SEARCH_TEXT = 'SET PARTNERS SEARCH TEXT';
 
 export const initialStateForm = {
   data: {
-    partner_type: 'EMPLEADO',
+    type: 'EMPLEADO',
     first_name: '',
     last_name: '',
     name: '',

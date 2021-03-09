@@ -62,8 +62,12 @@ const useStyles = makeStyles(theme => ({
     foldedAndClosed: {
         '& $navbarContent': {
             '& .logo-icon'                                   : {
-                width : 32,
-                height: 32
+                //width : 32,
+                visibility: 'hidden',
+            },
+            '& .logo-icon-folded'                                   : {
+                //width : 32,
+                visibility: 'hidden',
             },
             '& .logo-text'                                   : {
                 opacity: 0

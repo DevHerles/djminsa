@@ -52,7 +52,7 @@ function HeaderView(props)
             </div>
             <FuseAnimate animation="transition.slideRightIn" delay={300}>
                 <Button component={Link} to="/apps/users/new" className="whitespace-no-wrap" variant="contained">
-                    <span className="hidden sm:flex">Nueva usuario</span>
+                    <span className="hidden sm:flex">Nuevo usuario</span>
                     <span className="flex sm:hidden">Nuevo</span>
                 </Button>
             </FuseAnimate>

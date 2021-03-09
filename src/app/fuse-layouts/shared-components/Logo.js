@@ -6,8 +6,7 @@ import {makeStyles} from '@material-ui/styles';
 const useStyles = makeStyles(theme => ({
     root      : {
         '& .logo-icon'                : {
-            width     : 24,
-            height    : 24,
+            height    : 38,
             transition: theme.transitions.create(['width', 'height'], {
                 duration: theme.transitions.duration.shortest,
                 easing  : theme.transitions.easing.easeInOut
@@ -32,8 +31,7 @@ function Logo()
 
     return (
         <div className={clsx(classes.root, "flex items-center")}>
-            <img className="logo-icon" src="assets/images/logos/fuse.svg" alt="logo"/>
-            <Typography className="text-16 ml-12 font-light logo-text" color="textPrimary">MINSA</Typography>
+            <img className="logo-icon" src="assets/images/logos/logo.jpg" alt="logo"/>
         </div>
     );
 }

@@ -20,12 +20,6 @@ function Users() {
       content={
         <UsersTableView/>
       }
-      leftSidebarHeader={
-        <SidebarHeader/>
-      }
-      leftSidebarContent={
-        <SidebarContent/>
-      }
       innerScroll
     />
   );

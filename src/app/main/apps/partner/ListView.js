@@ -20,12 +20,6 @@ function Partners() {
       content={
         <PartnersTableView/>
       }
-      leftSidebarHeader={
-        <SidebarHeader/>
-      }
-      leftSidebarContent={
-        <SidebarContent/>
-      }
       innerScroll
     />
   );

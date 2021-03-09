@@ -111,6 +111,11 @@ function FormContent ({props}) {
         dob: yup.date().default(function () {
                 return new Date();
             }).required('La fecha de nacimiento es requerido'),
+        organ: yup.string().required('EL organo es requerido'),
+        organic_unit: yup.string().required('La unidad orgánica es requerido'),
+        functional_team: yup.string().required('El equipo funcional es requerido'),
+        position: yup.string().required('El cargo es requerido'),
+        work_type: yup.string().required('El tipo de trabajo es requerido'),
     });
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -197,7 +202,7 @@ function FormContent ({props}) {
             }}
             header={
                 <FormHeader
-                    title={ isAddMode ? 'Nuevo' : `${form.name} ${form.first_name} ${form.last_name}`}
+                    title={ isAddMode ? 'Nuevo' : `${form.name} ${form?.first_name} ${form?.last_name}`}
                     onSubmit={handleSubmit(onSubmit, onError)}
                 />
             }
