@@ -3,6 +3,7 @@ import {FusePageCarded} from '@fuse';
 import withReducer from 'app/store/withReducer';
 import UsersTableView from './components/TableView';
 import UsersHeaderView from './components/HeaderView';
+import UsersList from './components/UsersList';
 import SidebarHeader from './components/SidebarHeader';
 import SidebarContent from './components/SidebarContent';
 import reducer from './store/reducers';
@@ -18,7 +19,7 @@ function Users() {
         <UsersHeaderView/>
       }
       content={
-        <UsersTableView/>
+        <UsersList/>
       }
       innerScroll
     />

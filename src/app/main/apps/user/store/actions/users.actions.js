@@ -5,7 +5,7 @@ export const SET_USERS_SEARCH_TEXT = 'SET USERS SEARCH TEXT';
 
 const path='users';
 
-export function getUsers()
+export function getUsers(path)
 {
     const request = usersService.getAll(path);
     return (dispatch) =>

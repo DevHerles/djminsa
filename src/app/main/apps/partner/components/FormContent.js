@@ -18,6 +18,7 @@ import FormDataTable from './FormDataTable';
 
 import {yupResolver} from '@hookform/resolvers';
 import * as yup from 'yup';
+import {organicUnits} from 'app/constants/organic_unit';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -334,7 +335,7 @@ function FormContent ({props}) {
                                                         className="flex"
                                                         name="organic_unit"
                                                         label="Unidad orgánica"
-                                                        options={docTypes}
+                                                        options={organicUnits}
                                                         required={true}
                                                         errorobj={errors}
                                                     />
