@@ -7,6 +7,7 @@ export const GET_USER = 'GET USER';
 export const GET_USERS = 'GET USERS';
 export const SAVE_USER = 'SAVE USER';
 export const DELETE_USER = 'DELETE USER';
+export const DELETE_USERS = 'DELETE USERS';
 export const TOGGLE_IN_SELECTED_USERS = '[USERS APP] TOGGLE IN SELECTED USERS';
 export const SELECT_ALL_USERS = '[USERS APP] SELECT ALL USERS';
 export const DESELECT_ALL_USERS = '[USERS APP] DESELECT ALL USERS';
@@ -67,7 +68,7 @@ export function deleteById(path, id) {
   return (dispatch) =>
     request.then((response) => {
       dispatch(showMessage({
-        message: 'Partner eliminado'
+        message: 'Registro eliminado'
       }));
       return dispatch({
         type: DELETE_USER,
@@ -161,3 +162,120 @@ export function closeEditDialog() {
     type: CLOSE_EDIT_USER_DIALOG
   }
 }
+
+// TODO
+// '/api/contacts-app/remove-contacts'
+// export function deleteRecords(path, ids)
+// {
+//     return (dispatch, getState) => {
+
+//         const {routeParams} = getState().userApp.records;
+
+//         const request = axios.post(path, {
+//             contactIds: ids
+//         });
+
+//         return request.then((response) =>
+//             Promise.all([
+//                 dispatch({
+//                     type: DELETE_USERS
+//                 }),
+//                 dispatch({
+//                     type: DESELECT_ALL_USERS
+//                 })
+//             ]).then(() => dispatch(getContacts(routeParams)))
+//         );
+//     };
+// }
+
+// export function toggleStarredContact(contactId)
+// {
+//     return (dispatch, getState) => {
+//         const {routeParams} = getState().contactsApp.contacts;
+
+//         const request = axios.post('/api/contacts-app/toggle-starred-contact', {
+//             contactId
+//         });
+
+//         return request.then((response) =>
+//             Promise.all([
+//                 dispatch({
+//                     type: TOGGLE_STARRED_CONTACT
+//                 }),
+//                 dispatch(getUserData())
+//             ]).then(() => dispatch(getContacts(routeParams)))
+//         );
+//     };
+// }
+
+// export function toggleStarredContacts(contactIds)
+// {
+//     return (dispatch, getState) => {
+
+//         const {routeParams} = getState().contactsApp.contacts;
+
+//         const request = axios.post('/api/contacts-app/toggle-starred-contacts', {
+//             contactIds
+//         });
+
+//         return request.then((response) =>
+//             Promise.all([
+//                 dispatch({
+//                     type: TOGGLE_STARRED_CONTACTS
+//                 }),
+//                 dispatch({
+//                     type: DESELECT_ALL_CONTACTS
+//                 }),
+//                 dispatch(getUserData())
+//             ]).then(() => dispatch(getContacts(routeParams)))
+//         );
+//     };
+// }
+
+// export function setContactsStarred(contactIds)
+// {
+//     return (dispatch, getState) => {
+
+//         const {routeParams} = getState().contactsApp.contacts;
+
+//         const request = axios.post('/api/contacts-app/set-contacts-starred', {
+//             contactIds
+//         });
+
+//         return request.then((response) =>
+//             Promise.all([
+//                 dispatch({
+//                     type: SET_CONTACTS_STARRED
+//                 }),
+//                 dispatch({
+//                     type: DESELECT_ALL_CONTACTS
+//                 }),
+//                 dispatch(getUserData())
+//             ]).then(() => dispatch(getContacts(routeParams)))
+//         );
+//     };
+// }
+
+// export function setContactsUnstarred(contactIds)
+// {
+//     return (dispatch, getState) => {
+
+//         const {routeParams} = getState().contactsApp.contacts;
+
+//         const request = axios.post('/api/contacts-app/set-contacts-unstarred', {
+//             contactIds
+//         });
+
+//         return request.then((response) =>
+//             Promise.all([
+//                 dispatch({
+//                     type: SET_CONTACTS_STARRED
+//                 }),
+//                 dispatch({
+//                     type: DESELECT_ALL_CONTACTS
+//                 }),
+//                 dispatch(getUserData())
+//             ]).then(() => dispatch(getContacts(routeParams)))
+//         );
+//     };
+// }

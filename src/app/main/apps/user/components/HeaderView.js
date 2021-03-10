@@ -17,7 +17,7 @@ function HeaderView(props)
 
             <div className="flex items-center">
                 <FuseAnimate animation="transition.expandIn" delay={300}>
-                    <Icon className="text-32 mr-0 sm:mr-12">shopping_basket</Icon>
+                    <Icon className="text-32 mr-0 sm:mr-12">verified_user</Icon>
                 </FuseAnimate>
                 <FuseAnimate animation="transition.slideLeftIn" delay={300}>
                     <Fragment>
@@ -35,7 +35,7 @@ function HeaderView(props)
                             <Icon className="mr-8" color="action">search</Icon>
 
                             <Input
-                                placeholder="Search"
+                                placeholder="Buscar"
                                 className="flex flex-1"
                                 disableUnderline
                                 fullWidth

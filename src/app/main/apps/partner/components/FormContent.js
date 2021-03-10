@@ -46,26 +46,53 @@ const docTypes = [
     },
     {
         id: "CE",
-        label: "CARNÉ EXTRANJERÍA",
+        label: "CARNÉ DE EXTRANJERÍA",
+    },
+    {
+      id: "PAS",
+      label: "PASAPORTE",
     },
     {
         id: "PTP",
         label: "PTP",
     },
+    {
+      id: 'PDR',
+      label: 'PERMISO DE REFUGIO',
+    }
 ];
+
 const personTypeOptions = [
     {
-        value: "EMPLEADO",
-        label: "Empleado",
+        value: "COLABORADOR",
+        label: "Colaborador",
     },
     {
-        value: "TERCERO",
-        label: "Tercero",
-    },
-    {
-        value: "OTRO",
-        label: "Otro",
-    },
+        value: "PROVEEDOR",
+        label: "Proveedor",
+    }
+];
+
+const organOptions = [
+  {
+      value: "ORG1",
+      label: "ORGANO 1",
+  },
+  {
+      value: "ORG2 ",
+      label: "ORGANO 2",
+  }
+];
+
+const workTypeOptions = [
+  {
+      value: "ORG1",
+      label: "ORGANO 1",
+  },
+  {
+      value: "ORG2 ",
+      label: "ORGANO 2",
+  }
 ];
 
 // TODO
@@ -109,9 +136,7 @@ function FormContent ({props}) {
             .string()
             .matches(/^[9]\d{8}$/, 'El número de contacto debe iniciar con 9 y contener 9 dígitos')
             .required('El número de contacto es requerido'),
-        dob: yup.date().default(function () {
-                return new Date();
-            }).required('La fecha de nacimiento es requerido'),
+        dob: yup.date('Ingrese una fecha válida.').required('La fecha de nacimiento es requerido'),
         organ: yup.string().required('EL organo es requerido'),
         organic_unit: yup.string().required('La unidad orgánica es requerido'),
         functional_team: yup.string().required('El equipo funcional es requerido'),
@@ -415,332 +440,6 @@ function FormContent ({props}) {
                 </div>
             }
         />
-        {/* <FormProvider {...methods}>
-            <form autoComplete="off" noValidate>
-                <Grid container spacing={0}>
-                    <Grid className="flex flex-col flex-1 md:pr-32">
-                        <Card className={classes.paper}>
-                            <AppBar position="static" elevation={0}>
-                                <Toolbar className="pl-16 pr-8">
-                                    <Typography variant="subtitle1" color="inherit" className="flex-1">
-                                        Información general
-                                    </Typography>
-                                </Toolbar>
-                            </AppBar>
-                            <CardContent>
-                                <FormInput
-                                    //className="pr-14"
-                                    label="Nombres"
-                                    name="name"
-                                    required={true}
-                                    errorobj={errors}
-                                />
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid className="flex flex-col flex-1 md:pr-32">
-                        <Card className={classes.paper}>
-                            <AppBar position="static" elevation={0}>
-                                <Toolbar className="pl-16 pr-8">
-                                    <Typography variant="subtitle1" color="inherit" className="flex-1">
-                                        Información general
-                                    </Typography>
-                                </Toolbar>
-                            </AppBar>
-                            <CardContent>
-                                <FormInput
-                                    //className="pr-14"
-                                    label="Nombres"
-                                    name="name"
-                                    required={true}
-                                    errorobj={errors}
-                                />
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
-            </form>
-        </FormProvider>
-         */}
-        {/* <FormProvider  {...methods}>
-        <form>
-            <div className="flex flex-col flex-1 md:pr-32">
-                <FuseAnimateGroup
-                    enter={{
-                        animation: "transition.slideUpBigIn"
-                    }}
-                >
-                    <Card className="w-full mb-16">
-                        <AppBar position="static" elevation={0}>
-                            <Toolbar className="pl-16 pr-8">
-                                <Typography variant="subtitle1" color="inherit" className="flex-1">
-                                    Información general
-                                </Typography>
-                            </Toolbar>
-                        </AppBar>
-
-                        <CardContent>
-                        <Button
-                            variant="contained" color="primary"
-                            disabled={formState.isSubmitting}
-                            onClick={handleSubmit(onSubmit)}>
-                            Submit
-                        </Button>
-                        <Button
-                            type="reset" variant="contained"
-                            disabled={formState.isSubmitting}>
-                            Reset
-                        </Button>
-                            <div className="flex">
-                                <div className="min-w-48 pt-20">
-                                    <Icon color="action">account_circle</Icon>
-                                </div>
-                                <FormInput
-                                    //className="pr-14"
-                                    label="Nombres"
-                                    name="name"
-                                    required={true}
-                                    errorobj={errors}
-                                />
-                                <Input
-                                    ref={register}
-                                    className="mb-24"
-                                    label="Apellido Paterno"
-                                    id="first_name"
-                                    name="first_name"
-                                    variant="outlined"
-                                    error={!!errors.first_name}
-                                    helperText={errors?.first_name?.message}
-                                />
-                            </div>
-                            
-                            <div className="flex">
-                                <div className="min-w-48 pt-20">
-                                </div>
-                                <Input
-                                    ref={register}
-                                    className="mb-24"
-                                    label="Apellido Materno"
-                                    id="last_name"
-                                    name="last_name"
-                                    variant="outlined"
-                                    error={!!errors.last_name}
-                                    helperText={errors?.last_name?.message}
-                                />
-                            </div>
-                            <div className="flex">
-                                <div className="min-w-48 pt-20">
-                                    <Icon color="action">star</Icon>
-                                </div>
-                                <TextField
-                                    className="mb-24"
-                                    label="Nickname"
-                                    id="nickname"
-                                    name="nickname"
-                                    value={form.nickname}
-                                    variant="outlined"
-                                    fullWidth
-                                />
-                            </div>
-
-                            <div className="flex">
-                                <div className="min-w-48 pt-20">
-                                    <Icon color="action">phone</Icon>
-                                </div>
-                                <TextField
-                                    className="mb-24"
-                                    label="Phone"
-                                    id="phone"
-                                    name="phone"
-                                    value={form.phone}
-                                    variant="outlined"
-                                    fullWidth
-                                />
-                            </div>
-
-                            <div className="flex">
-                                <div className="min-w-48 pt-20">
-                                    <Icon color="action">email</Icon>
-                                </div>
-                                <Input
-                                    ref={register}
-                                    label="Email"
-                                    id="email"
-                                    name="email"
-                                    error={!!errors.email}
-                                    helperText={errors?.email?.message}
-                                />
-                            </div>
-
-                            <div className="flex">
-                                <div className="min-w-48 pt-20">
-                                    <Icon color="action">domain</Icon>
-                                </div>
-                                <TextField
-                                    className="mb-24"
-                                    label="Company"
-                                    id="company"
-                                    name="company"
-                                    value={form.company}
-                                    variant="outlined"
-                                    fullWidth
-                                />
-                            </div>
-
-                            <div className="flex">
-                                <div className="min-w-48 pt-20">
-                                    <Icon color="action">work</Icon>
-                                </div>
-                                <TextField
-                                    className="mb-24"
-                                    label="Job title"
-                                    id="jobTitle"
-                                    name="jobTitle"
-                                    value={form.jobTitle}
-                                    variant="outlined"
-                                    fullWidth
-                                />
-                            </div>
-
-                            <div className="flex">
-                                <div className="min-w-48 pt-20">
-                                    <Icon color="action">cake</Icon>
-                                </div>
-                                <TextField
-                                    className="mb-24"
-                                    id="birthday"
-                                    label="Birthday"
-                                    type="date"
-                                    value={form.birthday}
-                                    InputLabelProps={{
-                                        shrink: true
-                                    }}
-                                    variant="outlined"
-                                    fullWidth
-                                />
-                            </div>
-
-                            <div className="flex">
-                                <div className="min-w-48 pt-20">
-                                    <Icon color="action">home</Icon>
-                                </div>
-                                <TextField
-                                    className="mb-24"
-                                    label="Address"
-                                    id="address"
-                                    name="address"
-                                    value={form.address}
-                                    variant="outlined"
-                                    fullWidth
-                                />
-                            </div>
-
-                            <div className="flex">
-                                <div className="min-w-48 pt-20">
-                                    <Icon color="action">note</Icon>
-                                </div>
-                                <TextField
-                                    className="mb-24"
-                                    label="Notes"
-                                    id="notes"
-                                    name="notes"
-                                    value={form.notes}
-                                    variant="outlined"
-                                    multiline
-                                    rows={5}
-                                    fullWidth
-                                />
-                            </div>
-                            <ReadOnlyField title="Tipo de usuario" value={record?.partner_type}/>
-                            <ReadOnlyField title="Tipo de documento" value={record?.doc_type}/>
-                            <ReadOnlyField title="Número de documento" value={record?.doc_number}/>
-                            <ReadOnlyField title="Apellido paterno" value={record?.first_name}/>
-                            <ReadOnlyField title="Apellido materno" value={record?.last_name}/>
-                            <ReadOnlyField title="Nombres" value={record?.name}/>
-                            <ReadOnlyField title="Fecha de nacimiento" value={record?.dob}/>
-                            <ReadOnlyField title="Tipo de seguro" value={record?.assurance}/>
-                        </CardContent>
-                    </Card>
-                </FuseAnimateGroup>
-            </div>
-
-            <div className="flex flex-col flex-1 md:pr-32">
-                <FuseAnimateGroup
-                    enter={{
-                        animation: "transition.slideUpBigIn"
-                    }}
-                >
-                    <Card className="w-full mb-16">
-                        <AppBar position="static" elevation={0}>
-                            <Toolbar className="pl-16 pr-8">
-                                <Typography variant="subtitle1" color="inherit" className="flex-1">
-                                    Datos laborales
-                                </Typography>
-                            </Toolbar>
-                        </AppBar>
-                        <CardContent>
-                            <ReadOnlyField title="Dirección" value={record?.address}/>
-                            <ReadOnlyField title="Celular" value={record?.cellphone}/>
-                            <ReadOnlyField title="Correo electrónico" value={record?.email}/>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="w-full mb-16">
-                        <AppBar position="static" elevation={0}>
-                            <Toolbar className="pl-16 pr-8">
-                                <Typography variant="subtitle1" color="inherit" className="flex-1">
-                                    Datos de salud
-                                </Typography>
-                            </Toolbar>
-                        </AppBar>
-                        <CardContent>
-                            <ReadOnlyField title="¿Posee declaración jurada de salud?" value={record?.hasHealth}/>
-                            <ReadOnlyField title="¿Posee declaración jurada de sintomatología?" value={record?.hastSymptoms}/>
-                            <ReadOnlyField title="Seguimiento de estado de salud" value={record?.email}/>
-                        </CardContent>
-                    </Card>
-                </FuseAnimateGroup>
-            </div>
-
-            <div className="flex flex-col flex-1">
-                <FuseAnimateGroup
-                    enter={{
-                        animation: "transition.slideUpBigIn"
-                    }}
-                >
-                    <Card className="w-full mb-16">
-                        <AppBar position="static" elevation={0}>
-                            <Toolbar className="pl-16 pr-8">
-                                <Typography variant="subtitle1" color="inherit" className="flex-1">
-                                    Datos laborales
-                                </Typography>
-                            </Toolbar>
-                        </AppBar>
-                        <CardContent>
-                            <ReadOnlyField title="Dirección" value={record?.address}/>
-                            <ReadOnlyField title="Celular" value={record?.cellphone}/>
-                            <ReadOnlyField title="Correo electrónico" value={record?.email}/>
-                        </CardContent>
-                    </Card>
-
-                    <Card className="w-full mb-16">
-                        <AppBar position="static" elevation={0}>
-                            <Toolbar className="pl-16 pr-8">
-                                <Typography variant="subtitle1" color="inherit" className="flex-1">
-                                    Datos de salud
-                                </Typography>
-                            </Toolbar>
-                        </AppBar>
-                        <CardContent>
-                            <ReadOnlyField title="¿Posee declaración jurada de salud?" value={record?.hasHealth}/>
-                            <ReadOnlyField title="¿Posee declaración jurada de sintomatología?" value={record?.hastSymptoms}/>
-                            <ReadOnlyField title="Seguimiento de estado de salud" value={record?.email}/>
-                        </CardContent>
-                    </Card>
-                </FuseAnimateGroup>
-            </div>
-        </form>
-        </FormProvider> */}
     </div>
 );
 }

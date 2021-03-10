@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
         }
     }
 }));
+const API_PATH='users';
 
 function ProfilePage(props)
 {
@@ -36,7 +37,7 @@ function ProfilePage(props)
         dispatch.$inject(Actions.newProfile());
       } else {
         console.log(props.match.params);
-        dispatch(Actions.getById("603eb19eb8c08d6dd66e6b73"));
+        dispatch(Actions.getById(API_PATH, "6042a254ab94b74b82f1fb7c"));
       }
     }
     updateProfileState();

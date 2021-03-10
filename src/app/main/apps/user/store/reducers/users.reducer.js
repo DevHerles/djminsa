@@ -39,7 +39,7 @@ const usersReducer = function (state = Actions.initialStateList, action) {
       };
     }
     case Actions.SELECT_ALL_USERS: {
-      const arr = Object.keys(state.entities).map(k => state.entities[k]);
+      const arr = Object.keys(state.data).map(k => state.data[k]);
 
       const selectedIds = arr.map(record => record._id);
 

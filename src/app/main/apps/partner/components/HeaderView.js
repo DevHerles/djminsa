@@ -17,7 +17,7 @@ function HeaderView(props)
 
             <div className="flex items-center">
                 <FuseAnimate animation="transition.expandIn" delay={300}>
-                    <Icon className="text-32 mr-0 sm:mr-12">shopping_basket</Icon>
+                    <Icon className="text-32 mr-0 sm:mr-12">supervisor_account</Icon>
                 </FuseAnimate>
                 <FuseAnimate animation="transition.slideLeftIn" delay={300}>
                     <Fragment>

@@ -17,6 +17,8 @@ function MultiSelectMenu(props) {
     setAnchorEl(null);
   }
 
+  const API_PATH='remove-users';
+
   return (
     <React.Fragment>
       <IconButton
@@ -36,7 +38,7 @@ function MultiSelectMenu(props) {
         <MenuList>
           <MenuItem
             onClick={() => {
-              console.log('dispatch(Actions.removeContacts(selectedRecordIds));');
+              console.log('dispatch(Actions.deleteRecords(API_PATH, selectedRecordIds));');
               closeSelectedContactsMenu();
             }}
           >

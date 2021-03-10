@@ -2,7 +2,8 @@ import React, {
   useEffect,
   useState
 } from 'react';
-import { Avatar, Checkbox, Icon, IconButton, Typography } from '@material-ui/core';
+import { Avatar, Button, Checkbox, Icon, IconButton, Typography } from '@material-ui/core';
+import { DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 import {
   FuseAnimate,
   FuseUtils
@@ -18,6 +19,7 @@ import {
 } from 'react-redux';
 import MUIDataTable from "mui-datatables";
 import * as Actions from '../store/actions';
+import * as _DialogActions from 'app/store/actions';
 import MultiSelectMenu from './MultiSelectMenu';
 
 const API_PATH = 'users';
@@ -77,45 +79,11 @@ function TableView(props) {
     pageText: 'Página',
     ofText: 'de',
     rowsText: 'filas',
-    filters: {containsText: 'Contiene',},
+    filters: { containsText: 'Contiene', },
   };
-
-  const columns = ["Name", "Title", "Location"];
-
-  const options = {
-    filter: true,
-    filterType: "dropdown",
-    responsive: 'vertical',
-    tableBodyHeight: '450px',
-  };
-
-  const data = [
-    ["Gabby George", "Business Analyst", "Minneapolis"],
-    [
-      "Aiden Lloyd",
-      "Business Consultant for an International Company and CEO of Tony's Burger Palace",
-      "Dallas"
-    ],
-    ["Jaden Collins", "Attorney", "Santa Ana"],
-    ["Franky Rees", "Business Analyst", "St. Petersburg"],
-    ["Aaren Rose", null, "Toledo"],
-    ["Johnny Jones", "Business Analyst", "St. Petersburg"],
-    ["Jimmy Johns", "Business Analyst", "Baltimore"],
-    ["Jack Jackson", "Business Analyst", "El Paso"],
-    ["Joe Jones", "Computer Programmer", "El Paso"],
-    ["Jacky Jackson", "Business Consultant", "Baltimore"],
-    ["Jo Jo", "Software Developer", "Washington DC"],
-    ["Donna Marie", "Business Manager", "Annapolis"]
-  ];
 
   return (
     <FuseAnimate animation="transition.slideUpIn" delay={300}>
-      {/* <MUIDataTable
-        title={"ACME Employee list"}
-        data={data}
-        columns={columns}
-        options={options}
-      /> */}
       <ReactTable {...translations}
         className="-striped -highlight w-full h-full sm:rounded-16 overflow-hidden"
         getTrProps={(state, rowInfo) => {
@@ -123,7 +91,8 @@ function TableView(props) {
             className: "cursor-pointer",
             onClick: () => {
               if (rowInfo) {
-                console.log('dispatch(Actions.openEditContactDialog(rowInfo.original));');
+                props.history.push('/apps/users/' + rowInfo.original._id);
+                //console.log('dispatch(Actions.openEditContactDialog(rowInfo.original));');
               }
             }
           }
@@ -131,63 +100,34 @@ function TableView(props) {
         data={filteredData}
         columns={[
           {
-            Header: () => (
-              <Checkbox
-                onClick={(event) => {
-                  event.stopPropagation();
-                }}
-                onChange={() => {
-                  console.log('event.target.checked ? dispatch(Actions.selectAllContacts()) : dispatch(Actions.deSelectAllContacts());');
-                }}
-                checked={selectedIds.length === Object.keys(records).length && selectedIds.length > 0}
-                indeterminate={selectedIds.length !== Object.keys(records).length && selectedIds.length > 0}
-              />
-            ),
-            accessor: "",
-            Cell: row => {
-              return (<Checkbox
-                onClick={(event) => {
-                  event.stopPropagation();
-                }}
-                checked={selectedIds.includes(row.value._id)}
-                onChange={() => dispatch(Actions.toggleInSelected(row.value._id))}
-              />
-              )
-            },
-            className: "justify-center",
-            sortable: false,
-            width: 64
-          },
-          {
-            Header: () => (
-              selectedIds.length > 0 && (
-                <MultiSelectMenu />
-              )
-            ),
+            Header: "",
             accessor: "avatar",
             Cell: row => (
-              <Avatar className="mr-8" alt={row.original.name} src={row.value} />
+              <Avatar className="ml-8 mr-8" alt={row.original.name} src={row.value} />
             ),
             className: "justify-center",
             width: 64,
             sortable: false
           },
           {
-            Header: "User name",
+            Header: "Usuario",
             accessor: "username",
-            filterable: true,
             className: "font-bold"
           },
           {
             Header: "Email",
             accessor: "email",
-            filterable: true,
             className: "font-bold"
           },
           {
-            Header: "Email",
-            accessor: "email",
-            filterable: true
+            className: "justify-center",
+            Header: "¿Activo?",
+            accessor: "active",
+            Cell: (row) => (
+              <div className="flex items-center">
+                <Icon>check_circle</Icon>
+              </div>
+            )
           },
           {
             Header: "",
@@ -195,9 +135,38 @@ function TableView(props) {
             Cell: (row) => (
               <div className="flex items-center">
                 <IconButton
+                  // onClick={(ev) => {
+                  //   ev.stopPropagation();
+                  //   dispatch(Actions.deleteById(API_PATH, row.original._id));
+                  // }}
                   onClick={(ev) => {
                     ev.stopPropagation();
-                    dispatch(Actions.deleteById(API_PATH, row.original._id));
+                    
+                    dispatch(_DialogActions.openDialog({
+                      children: (
+                        <React.Fragment>
+                          <DialogTitle id="alert-dialog-title">Eliminar usuario</DialogTitle>
+                          <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                              <p>
+                                ¿Seguro que desea eliminar?.
+                              </p>
+                            </DialogContentText>
+                          </DialogContent>
+                          <DialogActions>
+                            <Button onClick={() => {
+                              dispatch(Actions.deleteById(API_PATH, row.original._id));
+                              dispatch(_DialogActions.closeDialog());
+                            }} color="error">
+                              SÍ
+                            </Button>
+                            <Button onClick={() => dispatch(_DialogActions.closeDialog())} color="primary" autoFocus>
+                              NO
+                            </Button>
+                          </DialogActions>
+                        </React.Fragment>
+                      )
+                    }))
                   }}
                 >
                   <Icon>delete</Icon>
@@ -206,7 +175,7 @@ function TableView(props) {
             )
           }
         ]}
-        defaultPageSize={5}
+        defaultPageSize={10}
         noDataText="No records found"
       />
     </FuseAnimate>

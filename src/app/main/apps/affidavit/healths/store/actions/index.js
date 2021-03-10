@@ -12,18 +12,18 @@ export const SET_HEALTHS_SEARCH_TEXT = 'SET HEALTHS SEARCH TEXT';
 export const initialStateForm = {
   data: {
     user_id: '6042a254ab94b74b82f1fb7d',
-    q1: 'SI',
-    q2: 'SI',
-    q3: 'SI',
-    q4: 'SI',
-    q5: 'SI',
-    q6: 'NO',
-    q7: 'NO',
-    q8: 'NO',
-    q9: 'NO',
-    q10: 'NO',
-    q11: 'NO',
-    q12: 'NO',
+    q1: '',
+    q2: '',
+    q3: '',
+    q4: '',
+    q5: '',
+    q6: '',
+    q7: '',
+    q8: '',
+    q9: '',
+    q10: '',
+    q11: '',
+    q12: '',
     q12_detail: '',
     q13: false,
   },
@@ -74,8 +74,19 @@ export function create(path, data) {
   const request = service.create(path, data);
   return (dispatch) =>
     request.then((response) => {
+      const { fit, q12 } = response.data;
+      const messageFit = 'Datos guardados con éxito. A continuación deberá registrar su declaración jurada de sintomatología.';
+      const messageNotFit = 'Estimado(a) Ud. presenta factor de riesgo relacionado a COVID-19, por lo que en resguardo de su salud debe coordinar con su Unidad Orgánica u Oficina o jefe a cargo a fin de que realice trabajo remoto. .';
+      const twelveDetail = 'Estimado(a) al haber declarado una condición de salud, el equipo de Seguridad y Salud en el Trabajo, evaluará su caso dentro de las 24 horas. Se le comunicará mediante correo electrónico en caso se acepta la solicitud de trabajo presencial.'
+      
       dispatch(showMessage({
-        message: 'Registro creado'
+        message: fit ? messageFit : q12 === 'SI' ? twelveDetail : messageNotFit,
+        autoHideDuration: 24000,//ms
+        anchorOrigin: {
+          vertical  : 'top',//top bottom
+          horizontal: 'center'//left center right
+        },
+        variant: fit ? 'success' : q12 === 'SI' ? 'warning': 'error'//success error info warning null
       }));
       return dispatch({
         type: SAVE_HEALTH,
