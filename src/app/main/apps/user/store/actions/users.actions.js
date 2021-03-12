@@ -17,7 +17,7 @@ export function getUsers(path)
         );
 }
 
-export function setUsersSearchText(event)
+export function setSearchText(event)
 {
     return {
         type      : SET_USERS_SEARCH_TEXT,

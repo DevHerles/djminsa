@@ -13,6 +13,9 @@ import withReducer from 'app/store/withReducer';
 import * as Actions from './store/actions';
 import * as _DialogActions from 'app/store/actions';
 import reducer from './store/reducers';
+import {
+  showMessage
+} from 'app/store/actions/fuse';
 
 const useStyles = makeStyles(theme => ({
   productImageFeaturedStar: {
@@ -48,7 +51,6 @@ const useStyles = makeStyles(theme => ({
     }
   }
 }));
-
 
 const questions = [
   { id: "q1", label: "1. Hipertensión arterial no controlada (*)" },
@@ -105,7 +107,7 @@ function Health(props) {
   useEffect(() => {
     if (
       (record.data && !form) ||
-      (record.data && form && record.data.id !== form.id)
+      (record.data && form && record.data._id !== form._id)
     ) {
       setForm(record.data);
     }
@@ -138,29 +140,9 @@ function Health(props) {
               <FuseAnimate animation="transition.slideRightIn" delay={300}>
                 <Typography className="normal-case flex items-center sm:mb-12" component={Link} role="button" to="/apps/affidavit/healths" color="inherit">
                   <Icon className="mr-4 text-20">arrow_back</Icon>
-                                    Mis declaraciones juradas de salud
-                                </Typography>
+                  Mis declaraciones juradas de salud
+                </Typography>
               </FuseAnimate>
-
-              {/* <div className="flex items-center max-w-full">
-                                <FuseAnimate animation="transition.expandIn" delay={300}>
-                                    {form.images.length > 0 && form.featuredImageId ? (
-                                        <img className="w-32 sm:w-48 mr-8 sm:mr-16 rounded" src={_.find(form.images, {id: form.featuredImageId}).url} alt={form.name}/>
-                                    ) : (
-                                        <img className="w-32 sm:w-48 mr-8 sm:mr-16 rounded" src="assets/images/ecommerce/product-image-placeholder.png" alt={form.name}/>
-                                    )}
-                                </FuseAnimate>
-                                <div className="flex flex-col min-w-0">
-                                    <FuseAnimate animation="transition.slideLeftIn" delay={300}>
-                                        <Typography className="text-16 sm:text-20 truncate">
-                                            {form.name ? form.name : 'New Health'}
-                                        </Typography>
-                                    </FuseAnimate>
-                                    <FuseAnimate animation="transition.slideLeftIn" delay={300}>
-                                        <Typography variant="caption">Health Detail</Typography>
-                                    </FuseAnimate>
-                                </div>
-                            </div> */}
             </div>
             <FuseAnimate animation="transition.slideRightIn" delay={300}>
               <Button
@@ -170,39 +152,52 @@ function Health(props) {
                 onClick={() => dispatch(_DialogActions.openDialog({
                   children: (
                     <React.Fragment>
-                      <DialogTitle id="alert-dialog-title">Declaración Jurada</DialogTitle>
+                      <DialogTitle id="alert-dialog-title">!ATENCIÓN¡</DialogTitle>
                       <DialogContent>
                         <DialogContentText id="alert-dialog-description">
-                          <p>
-                            a) Todos los datos expresados en esta ficha consitituyen declaración jurada
+                          <h3 className="secondary">
+                            a) Todos los datos expresados en esta ficha constituyen declaración jurada
                             de mi parte. He sido informado que de omitir o falsear información puedo perjudicar
                             la salud de mis compañeros, y la mía propia lo cual, de constituir una falta
                             grave a la salud pública, asumo sus consecuencias.
-                          </p>
-                          <p>
+                          </h3>
+                          <h3>
                             La presente Declaración Jurada. se realiza al amparao de principio de presunción de
                             veracidad establecida en el artículo IV numeral 1 punto 1.7 del Decreto Supremo Nª
                             004-JUS-2019 que aprueba la Ley del Procedimiento Administrativo General Nª 27444. (dentro de la ficha)
-                          </p>
-                          <p>
+                          </h3>
+                          <h3>
                             b) Los usuarios que presenten síntomas relacionados a COVID-19 y/o hayan estado en contacto con algún
                             caso confirmado de COVID-19, no deben asistir a las instalaciones del Ministerio, informado del
                             evento a la Unidad Orgánica u Oficina a cargo, y al Servicio médico, anexo 2032 y/o al correo
                             cmendoza@minsa.gob.pe / gmaita@minsa.gob.pe (dentro de la ficha).
-                          </p>
+                          </h3>
                         </DialogContentText>
                       </DialogContent>
                       <DialogActions>
                         <Button onClick={() => {
+                          console.log('API_PATH, form:', API_PATH, form);
                           dispatch(Actions.create(API_PATH, form));
                           dispatch(_DialogActions.closeDialog());
                           props.history.push('/apps/affidavit/healths');
                         }} color="error">
                           De acuerdo
-                                              </Button>
-                        <Button onClick={() => dispatch(_DialogActions.closeDialog())} color="primary" autoFocus>
+                        </Button>
+                        <Button onClick={() => {
+                          dispatch(showMessage({
+                            message: 'Ud. no está de acuerdo con las condiciones. El proceso de registro de la declaración jurada de salud ha sido cancelado.',
+                            autoHideDuration: 24000,//ms
+                            anchorOrigin: {
+                              vertical  : 'top',//top bottom
+                              horizontal: 'center'//left center right
+                            },
+                            variant: 'warning' //success error info warning null
+                          }));
+                          props.history.push('/apps/affidavit/healths');
+                          dispatch(_DialogActions.closeDialog())
+                        }} color="primary" autoFocus>
                           No estoy de acuerdo
-                                              </Button>
+                        </Button>
                       </DialogActions>
                     </React.Fragment>
                   )

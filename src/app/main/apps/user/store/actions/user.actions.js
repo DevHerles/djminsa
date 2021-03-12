@@ -32,7 +32,7 @@ export const initialStateList = {
   searchText: '',
   selectedIds: [],
   routeParams: {},
-  contactDialog: {
+  recordDialog: {
     type: 'new',
     props: {
       open: false

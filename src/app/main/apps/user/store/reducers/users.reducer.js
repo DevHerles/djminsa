@@ -57,7 +57,7 @@ const usersReducer = function (state = Actions.initialStateList, action) {
     case Actions.OPEN_NEW_USER_DIALOG: {
       return {
         ...state,
-        contactDialog: {
+        recordDialog: {
           type: 'new',
           props: {
             open: true
@@ -69,7 +69,7 @@ const usersReducer = function (state = Actions.initialStateList, action) {
     case Actions.CLOSE_NEW_USER_DIALOG: {
       return {
         ...state,
-        contactDialog: {
+        recordDialog: {
           type: 'new',
           props: {
             open: false
@@ -81,7 +81,7 @@ const usersReducer = function (state = Actions.initialStateList, action) {
     case Actions.OPEN_EDIT_USER_DIALOG: {
       return {
         ...state,
-        contactDialog: {
+        recordDialog: {
           type: 'edit',
           props: {
             open: true
@@ -93,7 +93,7 @@ const usersReducer = function (state = Actions.initialStateList, action) {
     case Actions.CLOSE_EDIT_USER_DIALOG: {
       return {
         ...state,
-        contactDialog: {
+        recordDialog: {
           type: 'edit',
           props: {
             open: false

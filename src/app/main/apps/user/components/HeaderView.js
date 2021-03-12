@@ -43,7 +43,7 @@ function HeaderView(props)
                                 inputProps={{
                                     'aria-label': 'Search'
                                 }}
-                                onChange={ev => dispatch(Actions.setUsersSearchText(ev))}
+                                onChange={ev => dispatch(Actions.setSearchText(ev))}
                             />
                         </Paper>
                     </FuseAnimate>

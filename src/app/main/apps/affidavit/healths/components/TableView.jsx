@@ -144,7 +144,7 @@ function TableView(props) {
                     </TableCell>
                     <TableCellUI field={record.q13} />
                     <TableCell component="th" scope="row">
-                      {record.user_id}
+                      {record.partner_id}
                     </TableCell>
                     <TableCellUI field={record.q1} />
                     <TableCellUI field={record.q2} />
