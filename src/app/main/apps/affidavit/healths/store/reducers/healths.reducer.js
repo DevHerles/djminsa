@@ -49,7 +49,7 @@ const reducer = function (state = Actions.initialStateList, action) {
       } else {
         const _filter = _filterType === 'fit' ? true : false
         if (state.originalData.length > 0) {
-          filteredData = state.originalData.filter((item) => item.fit !== _filter);
+          filteredData = state.originalData.filter((item) => item.fit === _filter);
         }
       }
 

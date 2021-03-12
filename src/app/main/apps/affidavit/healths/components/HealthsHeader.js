@@ -31,7 +31,7 @@ function HealthsHeader(props) {
             <Icon className="text-32 mr-12">account_box</Icon>
           </FuseAnimate>
           <FuseAnimate animation="transition.slideLeftIn" delay={300}>
-            <Typography variant="h6" className="hidden sm:flex">Contacts</Typography>
+            <Typography variant="h6" className="hidden sm:flex">Declaraciones juradas de salud</Typography>
           </FuseAnimate>
         </div>
       </div>
@@ -42,7 +42,7 @@ function HealthsHeader(props) {
             <Paper className="flex p-4 items-center w-full max-w-512 px-8 py-4" elevation={1}>
               <Icon className="mr-8" color="action">search</Icon>
               <Input
-                placeholder="Search for anything"
+                placeholder="Buscar..."
                 className="flex flex-1"
                 disableUnderline
                 fullWidth

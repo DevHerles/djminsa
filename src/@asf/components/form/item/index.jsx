@@ -8,14 +8,13 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 
 
-const SimpleItem = ({ title, onChange, value, field }) => {
+const SimpleItem = ({ title, onChange, value, field, errors, touched, handleBlur }) => {
+  console.log('errors:', errors);
+  console.log('touched:', touched);
   return (
-    <Card elevation={2} className="play-card p-sm-10 pt-3 bg-paper">
+    <Card elevation={2} className="play-card p-sm-10 mt-3 bg-paper">
       <List>
         <ListItem>
-            <ListItemIcon className="min-w-40">
-                <Icon>notifications</Icon>
-            </ListItemIcon>
             <ListItemText primary={title}/>
             <ListItemSecondaryAction>
             <FormControl component="fieldset">
@@ -25,6 +24,7 @@ const SimpleItem = ({ title, onChange, value, field }) => {
                     aria-label={field}
                     value={value}
                     onChange={onChange}
+                    onBlur={handleBlur}
                 >
                     <FormControlLabel value="SI" control={<Radio />} label="SI" />
                     <FormControlLabel value="NO" control={<Radio />} label="NO" />
@@ -32,6 +32,12 @@ const SimpleItem = ({ title, onChange, value, field }) => {
             </FormControl>
             </ListItemSecondaryAction>
         </ListItem>
+        {/* {!!errors?.name && touched.name ? ( */}
+        {!!errors && eval(`touched.${field}`) ? (
+          <ListItem>
+            <ListItemText primary={errors}/>
+          </ListItem>
+        ) : null}
       </List>
     </Card>
   );

@@ -154,7 +154,7 @@ function HealthsList(props) {
             Cell: (row) => (
               <div className="flex items-center">
                 {
-                  row.original.fit ? <Icon>clear</Icon> : <Icon>check</Icon>
+                  row.original.fit ? <Icon>check</Icon> : <Icon>clear</Icon>
                 }
               </div>
             )

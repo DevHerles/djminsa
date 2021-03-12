@@ -1,24 +1,13 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, Fragment, useState } from 'react';
 import { TextField, Button, Dialog, DialogActions, DialogContent, Icon, IconButton, Typography, Toolbar, AppBar, Avatar } from '@material-ui/core';
+import { Tab, Tabs } from '@material-ui/core';
 import { useForm } from '@fuse/hooks';
 import FuseUtils from '@fuse/FuseUtils';
 import * as Actions from '../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
-
-const defaultFormState = {
-  id: '',
-  name: '',
-  lastName: '',
-  avatar: 'assets/images/avatars/profile.jpg',
-  nickname: '',
-  company: '',
-  jobTitle: '',
-  email: '',
-  phone: '',
-  address: '',
-  birthday: '',
-  notes: ''
-};
+import { SimpleItem } from '@asf';
+import {Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 const API_PATH='healths';
 
@@ -26,67 +15,52 @@ function HealthDialog(props) {
   const dispatch = useDispatch();
   const recordDialog = useSelector(({ affidavitHealthApp }) => affidavitHealthApp.records.recordDialog);
 
-  const { form, handleChange, setForm } = useForm(Actions.initialStateForm.data);
-
-  const initDialog = useCallback(
-    () => {
-      /**
-       * Dialog type: 'edit'
-       */
-      if (recordDialog.type === 'edit' && recordDialog.data) {
-        setForm({ ...recordDialog.data });
-      }
-
-      /**
-       * Dialog type: 'new'
-       */
-      if (recordDialog.type === 'new') {
-        setForm({
-          ...Actions.initialStateForm.data,
-          ...recordDialog.data,
-          id: FuseUtils.generateGUID()
-        });
-      }
-    },
-    [recordDialog.data, recordDialog.type, setForm],
-  );
-
-  useEffect(() => {
-    /**
-     * After Dialog Open
-     */
-    if (recordDialog.props.open) {
-      initDialog();
-    }
-
-  }, [recordDialog.props.open, initDialog]);
-
   function closeComposeDialog() {
     recordDialog.type === 'edit' ? dispatch(Actions.closeEditDialog()) : dispatch(Actions.closeNewDialog());
   }
 
   function canBeSubmitted() {
     return (
-      form._id.length > 0
+      true
     );
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-
-    if (recordDialog.type === 'new') {
-      dispatch(Actions.create(API_PATH, form));
-    }
-    else {
-      dispatch(Actions.updateById(API_PATH, form, form._id));
-    }
+    console.log('handleSubmit(event)');
     closeComposeDialog();
   }
 
   function handleRemove() {
-    dispatch(Actions.deleteById(API_PATH, form._id));
+    console.log('handleRemove()');
     closeComposeDialog();
   }
+
+  const questions = [
+    { id: "q1", label: "1. Hipertensión arterial no controlada (*)" },
+    { id: "q2", label: "2. Enfermedades cardiovasculares graves (*)" },
+    { id: "q3", label: "3. Diabetes Mellitus (*)" },
+    {
+      id: "q4",
+      label: "4. Obesidad con IMC de 40 a mas (*)",
+      help:
+        "El índice de masa corporal (IMC) se determina usando la formula peso(kg) / estatura(m)^2 Ejemplo: Peso 68 kg, Estatura = 1.66 m, Cálculo IMC = 68 / (1.65)(1.65) = 24.98",
+    },
+    { id: "q5", label: "5. Cáncer (*)" },
+    { id: "q6", label: "6. Asma moderada o grave (*)" },
+  ];
+
+  const questions1 = [
+    { id: "q7", label: "7. Enfermedad pulmonar crónica (*)" },
+    {
+      id: "q8",
+      label: "8. Insuficiencia renal crónica en tratamiento con hemodiálisis (*)",
+    },
+    { id: "q9", label: "9. Enfermedad o tratamiento inmunosupresor (*)" },
+    { id: "q10", label: "10. Edad mayor de 65 años (*)" },
+    { id: "q11", label: "11. Gestación (*)" },
+    { id: "q12", label: "12. Otros (*)" },
+  ];
 
   return (
     <Dialog
@@ -102,188 +76,110 @@ function HealthDialog(props) {
       <AppBar position="static" elevation={1}>
         <Toolbar className="flex w-full">
           <Typography variant="subtitle1" color="inherit">
-            {recordDialog.type === 'new' ? 'New Contact' : 'Edit Contact'}
+            {recordDialog.type === 'new' ? 'Nueva declaración jurada de salud' : 'Editar declaración jurada de salud'}
           </Typography>
         </Toolbar>
-        <div className="flex flex-col items-center justify-center pb-24">
-          <Avatar className="w-96 h-96" alt="contact avatar" src={form.avatar} />
-          {recordDialog.type === 'edit' && (
-            <Typography variant="h6" color="inherit" className="pt-8">
-              {form.name}
-            </Typography>
-          )}
-        </div>
       </AppBar>
-      <form noValidate onSubmit={handleSubmit} className="flex flex-col overflow-hidden">
-        <DialogContent classes={{ root: "p-24" }}>
-          <div className="flex">
-            <div className="min-w-48 pt-20">
-              <Icon color="action">account_circle</Icon>
-            </div>
 
-            <TextField
-              className="mb-24"
-              label="Name"
-              autoFocus
-              id="name"
-              name="name"
-              value={form.q1}
-              onChange={handleChange}
-              variant="outlined"
-              required
-              fullWidth
-            />
+      <DialogContent classes={{ root: "p-24" }}>
+        <Formik
+          initialValues={recordDialog.type === 'new' ? Actions.initialStateForm.data : recordDialog.data}
+          onSubmit={(values, {setSubmitting}) => {
+            setSubmitting(true);
+            console.log(values);
+            if (recordDialog.type === 'new') {
+              dispatch(Actions.create(API_PATH, values));
+            }
+            else {
+              dispatch(Actions.updateById(API_PATH, values, values._id));
+            }
+            closeComposeDialog();
+          }}
+          validationSchema={Actions.validationSchema}
+        >
+          {(props) => {
+            const {
+              values,
+              touched,
+              errors,
+              dirty,
+              isSubmitting,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              handleReset,
+              isValid,
+            } = props;
+            return (
+              <form onSubmit={handleSubmit}>
+                <div className="md:flex">
+                  <div className="flex flex-col flex-1 md:pr-32">
+                    {questions.map((question) => {
+                      return (
+                        <Fragment>
+                          <SimpleItem
+                            key={`_index_${question.id}`}
+                            field={question.id}
+                            title={question.label}
+                            onChange={handleChange}
+                            handleBlur={handleBlur}
+                            touched={touched}
+                            value={eval(`values.${question.id}`)}
+                            errors={eval(`errors.${question.id}`)} />
+                        </Fragment>
+                      );
+                    })}
+                  </div>
+                  <div className="flex flex-col flex-1 md:pr-32">
+                    {questions1.map((question) => {
+                      return (
+                        <Fragment>
+                          <SimpleItem
+                            key={`_index_${question.id}`}
+                            field={question.id}
+                            title={question.label}
+                            onChange={handleChange}
+                            handleBlur={handleBlur}
+                            touched={touched}
+                            value={eval(`values.${question.id}`)}
+                            errors={eval(`errors.${question.id}`)} />
+                        </Fragment>
+                      );
+                    })}
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      type="submit"
+                      disabled={!isValid ? true : null}
+                    >
+                      Generar declaración jurada de salud
+                    </Button>
+                  </div>
+                </div>
+              </form>
+            );
+          }}
+        </Formik>
+        {/* <div className="md:flex">
+          <div className="flex flex-col flex-1 md:pr-32">
+            {questions.map((question) => {
+              return (
+                <Fragment>
+                  <SimpleItem key={`_index_${question.id}`} title={question.label} onChange={handleChange} value={eval(`form.${question.id}`)} field={question.id} />
+                </Fragment>
+              );
+            })}
           </div>
-
-          <div className="flex">
-            <div className="min-w-48 pt-20">
-            </div>
-            <TextField
-              className="mb-24"
-              label="Last name"
-              id="lastName"
-              name="lastName"
-              value={form.lastName}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-            />
+          <div className="flex flex-col flex-1">
+            {questions1.map((question) => {
+              return (
+                <Fragment>
+                  <SimpleItem key={`_index_${question.id}`} title={question.label} onChange={handleChange} value={eval(`form.${question.id}`)} field={question.id} />
+                </Fragment>
+              );
+            })}
           </div>
-
-          <div className="flex">
-            <div className="min-w-48 pt-20">
-              <Icon color="action">star</Icon>
-            </div>
-            <TextField
-              className="mb-24"
-              label="Nickname"
-              id="nickname"
-              name="nickname"
-              value={form.nickname}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-
-          <div className="flex">
-            <div className="min-w-48 pt-20">
-              <Icon color="action">phone</Icon>
-            </div>
-            <TextField
-              className="mb-24"
-              label="Phone"
-              id="phone"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-
-          <div className="flex">
-            <div className="min-w-48 pt-20">
-              <Icon color="action">email</Icon>
-            </div>
-            <TextField
-              className="mb-24"
-              label="Email"
-              id="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-
-          <div className="flex">
-            <div className="min-w-48 pt-20">
-              <Icon color="action">domain</Icon>
-            </div>
-            <TextField
-              className="mb-24"
-              label="Company"
-              id="company"
-              name="company"
-              value={form.company}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-
-          <div className="flex">
-            <div className="min-w-48 pt-20">
-              <Icon color="action">work</Icon>
-            </div>
-            <TextField
-              className="mb-24"
-              label="Job title"
-              id="jobTitle"
-              name="jobTitle"
-              value={form.jobTitle}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-
-          <div className="flex">
-            <div className="min-w-48 pt-20">
-              <Icon color="action">cake</Icon>
-            </div>
-            <TextField
-              className="mb-24"
-              id="birthday"
-              label="Birthday"
-              type="date"
-              value={form.birthday}
-              onChange={handleChange}
-              InputLabelProps={{
-                shrink: true
-              }}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-
-          <div className="flex">
-            <div className="min-w-48 pt-20">
-              <Icon color="action">home</Icon>
-            </div>
-            <TextField
-              className="mb-24"
-              label="Address"
-              id="address"
-              name="address"
-              value={form.address}
-              onChange={handleChange}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-
-          <div className="flex">
-            <div className="min-w-48 pt-20">
-              <Icon color="action">note</Icon>
-            </div>
-            <TextField
-              className="mb-24"
-              label="Notes"
-              id="notes"
-              name="notes"
-              value={form.notes}
-              onChange={handleChange}
-              variant="outlined"
-              multiline
-              rows={5}
-              fullWidth
-            />
-          </div>
-        </DialogContent>
-
+        </div> */}
         {recordDialog.type === 'new' ? (
           <DialogActions className="justify-between pl-16">
             <Button
@@ -294,7 +190,7 @@ function HealthDialog(props) {
               disabled={!canBeSubmitted()}
             >
               Add
-                        </Button>
+            </Button>
           </DialogActions>
         ) : (
             <DialogActions className="justify-between pl-16">
@@ -306,7 +202,7 @@ function HealthDialog(props) {
                 disabled={!canBeSubmitted()}
               >
                 Save
-                        </Button>
+              </Button>
               <IconButton
                 onClick={handleRemove}
               >
@@ -314,7 +210,9 @@ function HealthDialog(props) {
               </IconButton>
             </DialogActions>
           )}
-      </form>
+
+      </DialogContent>
+
     </Dialog>
   );
 }

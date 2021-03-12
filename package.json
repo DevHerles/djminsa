@@ -17,6 +17,7 @@
         "date-fns": "2.0.0-alpha.34",
         "downshift": "3.2.10",
         "firebase": "6.2.0",
+        "formik": "^2.2.6",
         "formsy-react": "1.1.5",
         "google-map-react": "1.1.4",
         "jsonwebtoken": "8.5.1",

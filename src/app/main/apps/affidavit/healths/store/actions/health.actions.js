@@ -3,6 +3,8 @@ import {
 } from 'app/store/actions/fuse';
 import service from 'app/services/api.service';
 
+import * as Yup from 'yup';
+
 export const GET_HEALTH = '[HEALTHS APP] GET HEALTH';
 export const GET_HEALTHS = '[HEALTHS APP] GET HEALTHS';
 export const SAVE_HEALTH = '[HEALTHS APP] SAVE HEALTH';
@@ -17,6 +19,33 @@ export const CLOSE_NEW_HEALTH_DIALOG = '[HEALTHS APP] CLOSE NEW HEALTH DIALOG';
 export const OPEN_EDIT_HEALTH_DIALOG = '[HEALTHS APP] OPEN EDIT HEALTH DIALOG';
 export const CLOSE_EDIT_HEALTH_DIALOG = '[HEALTHS APP] CLOSE EDIT HEALTH DIALOG';
 export const SET_HEALTHS_SEARCH_TEXT = 'SET HEALTHS SEARCH TEXT';
+
+export const validationSchema=Yup.object().shape({
+  q1: Yup.string()
+    .required('Required'),
+  q2: Yup.string()
+    .required('Required'),
+  q3: Yup.string()
+    .required('Required'),
+  q4: Yup.string()
+    .required('Required'),
+  q5: Yup.string()
+    .required('Required'),
+  q6: Yup.string()
+    .required('Required'),
+  q7: Yup.string()
+    .required('Required'),
+  q8: Yup.string()
+    .required('Required'),
+  q9: Yup.string()
+    .required('Required'),
+  q10: Yup.string()
+    .required('Required'),
+  q11: Yup.string()
+    .required('Required'),
+  q12: Yup.string()
+    .required('Required'),
+});
 
 export const initialStateForm = {
   data: {
