@@ -6,12 +6,16 @@ import FuseUtils from '@fuse/FuseUtils';
 import * as Actions from '../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { SimpleItem } from '@asf';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const API_PATH='healths';
 
 function HealthDialog(props) {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const dispatch = useDispatch();
   const recordDialog = useSelector(({ affidavitHealthApp }) => affidavitHealthApp.records.recordDialog);
   const affidavitResult = useSelector(({ affidavitHealthApp }) => affidavitHealthApp.records.affidavitResult);
@@ -84,13 +88,12 @@ function HealthDialog(props) {
 
   return (
     <Dialog
-      classes={{
-        paper: "m-24"
-      }}
       {...recordDialog.props}
       onClose={closeComposeDialog}
       fullWidth
+      fullScreen={fullScreen}
       maxWidth={dialogMaxWidth}
+      aria-labelledby="responsive-dialog-title"
       {...props}
     >
       <AppBar position="static" elevation={1}>
@@ -107,30 +110,25 @@ function HealthDialog(props) {
         {
           disclaimer && recordDialog.type === 'new' ?
           <div>
-            <DialogContentText id="alert-dialog-description">
-            <Typography variant="h5" className="primary">
-                Términos y condiciones:
-              </Typography>
-              <br></br>
-              <Typography variant="h6" className="secondary">
-                a) Todos los datos expresados en esta ficha constituyen declaración jurada
-                de mi parte. He sido informado que de omitir o falsear información puedo perjudicar
-                la salud de mis compañeros, y la mía propia lo cual, de constituir una falta
-                grave a la salud pública, asumo sus consecuencias.
-              </Typography>
-              <br></br>
-              <Typography variant="h6" >
-                La presente Declaración Jurada. se realiza al amparo de principio de presunción de
-                veracidad establecida en el artículo IV numeral 1 punto 1.7 del Decreto Supremo Nª
-                004-JUS-2019 que aprueba la Ley del Procedimiento Administrativo General Nª 27444. (dentro de la ficha)
-              </Typography>
-              <br></br>
-              <Typography variant="h6" >
-                b) Los usuarios que presenten síntomas relacionados a COVID-19 y/o hayan estado en contacto con algún
-                caso confirmado de COVID-19, no deben asistir a las instalaciones del Ministerio, informado del
-                evento a la Unidad Orgánica u Oficina a cargo, y al Servicio médico, anexo 2032 y/o al correo
-                cmendoza@minsa.gob.pe / gmaita@minsa.gob.pe (dentro de la ficha).
-              </Typography>
+            <DialogContentText id="alert-dialog-description" variant="subtitle1"color="primary">
+              Términos y condiciones:
+            </DialogContentText>
+            <DialogContentText id="alert-dialog-description" variant="subtitle2" color="error">
+              a) Todos los datos expresados en esta ficha constituyen declaración jurada
+              de mi parte. He sido informado que de omitir o falsear información puedo perjudicar
+              la salud de mis compañeros, y la mía propia lo cual, de constituir una falta
+              grave a la salud pública, asumo sus consecuencias.
+            </DialogContentText>
+            <DialogContentText id="alert-dialog-description" variant="subtitle2" color="error">
+              La presente Declaración Jurada. se realiza al amparo de principio de presunción de
+              veracidad establecida en el artículo IV numeral 1 punto 1.7 del Decreto Supremo Nª
+              004-JUS-2019 que aprueba la Ley del Procedimiento Administrativo General Nª 27444. (dentro de la ficha)
+            </DialogContentText>
+            <DialogContentText id="alert-dialog-description" variant="subtitle2" color="error">
+              b) Los usuarios que presenten síntomas relacionados a COVID-19 y/o hayan estado en contacto con algún
+              caso confirmado de COVID-19, no deben asistir a las instalaciones del Ministerio, informado del
+              evento a la Unidad Orgánica u Oficina a cargo, y al Servicio médico, anexo 2032 y/o al correo
+              cmendoza@minsa.gob.pe / gmaita@minsa.gob.pe (dentro de la ficha).
             </DialogContentText>
           </div> :
           hasResponse ?
@@ -166,16 +164,20 @@ function HealthDialog(props) {
                 handleReset,
                 isValid,
               } = props;
-              setDialogMaxWidth('lg');
+              //setDialogMaxWidth('lg');
               return (
+                <>
                 <form onSubmit={handleSubmit}>
                   <div className="md:flex">
                     <div className="flex flex-col flex-1 md:pr-32">
                       {questions.map((question) => {
                         return (
-                          <Fragment>
+                          <Fragment
+                            key={`_index_${question.id}`}
+                          >
                             <SimpleItem
                               required
+                              fullScreen={fullScreen}
                               key={`_index_${question.id}`}
                               field={question.id}
                               title={question.label}
@@ -192,10 +194,13 @@ function HealthDialog(props) {
                     <div className="flex flex-col flex-1 md:pr-32">
                       {questions1.map((question) => {
                         return (
-                          <Fragment>
+                          <Fragment
+                          key={`_index__${question.id}`}
+                          >
                             <SimpleItem
                               required
-                              key={`_index_${question.id}`}
+                              fullScreen={fullScreen}
+                              key={`_index__${question.id}`}
                               field={question.id}
                               title={question.label}
                               onChange={handleChange}
@@ -211,24 +216,41 @@ function HealthDialog(props) {
                   <br></br>
                   <div className="md:flex">
                     {
-                      recordDialog.type === 'new' ? <Button
-                      variant="contained"
-                      color="primary"
-                      type="submit"
-                      disabled={!isValid ? true : null}
-                    >
-                      Registrar declaración jurada de salud
-                    </Button> : <Button
-                      variant="contained"
-                      color="primary"
-                      type="submit"
-                      disabled={!isValid ? true : null}
-                    >
-                      Actualizar declaración jurada de salud
-                    </Button>
+                      recordDialog.type === 'new' ?
+                      <DialogActions className="justify-between pl-16">
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          type="submit"
+                          disabled={!isValid ? true : null}
+                        >
+                          Registrar declaración jurada de salud
+                        </Button>
+                        <Button
+                          onClick={handleRemove}
+                        >
+                          CANCELAR
+                        </Button>
+                      </DialogActions> : 
+                    <DialogActions className="justify-between pl-16">
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                        disabled={!isValid ? true : null}
+                      >
+                        Actualizar declaración jurada de salud
+                      </Button>
+                      <Button
+                        onClick={handleRemove}
+                      >
+                        CERRAR
+                      </Button>
+                    </DialogActions>
                     }
                   </div>
                 </form>
+                </>
               );
             }}
           </Formik>
@@ -245,7 +267,6 @@ function HealthDialog(props) {
               SÍ estoy de acuerdo, quiero continuar
             </Button>
             <Button
-              type="submit"
               onClick={handleRemove}
             >
               NO estoy de acuerdo
@@ -262,12 +283,12 @@ function HealthDialog(props) {
               onClick={handleSubmit}
               disabled={!canBeSubmitted()}
             >
-              Querio registrar mi declaración jurada de sintomatología
+              Continuar con la declaración jurada de sintomatología
             </Button>
             <Button
               onClick={handleRemove}
             >
-              TerminarXX
+              Finalizar
             </Button>
           </DialogActions> :
           <DialogActions className="justify-between pl-16">

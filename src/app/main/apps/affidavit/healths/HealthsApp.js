@@ -31,12 +31,6 @@ function HealthsApp(props) {
     dispatch(Actions.getAll(API_PATH));
   }, []);
 
-  // useEffect(() => {
-  //   const {filter} = props.match.params;
-  //   console.log(filter);
-  //   dispatch(Actions.getAll(API_PATH, filter));
-  // }, [dispatch, props.match.params]);
-
   return (
     <React.Fragment>
       <FusePageSimple

@@ -17,6 +17,8 @@ import {
   useDispatch,
   useSelector
 } from 'react-redux';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import MUIDataTable from "mui-datatables";
 import * as Actions from '../store/actions';
 import * as _DialogActions from 'app/store/actions';
@@ -25,6 +27,8 @@ import * as _DialogActions from 'app/store/actions';
 const API_PATH = 'healths';
 
 function HealthsList(props) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const dispatch = useDispatch();
   const records = useSelector(({
     affidavitHealthApp
@@ -59,7 +63,6 @@ function HealthsList(props) {
 
   useEffect(() => {
     const {filter} = props.match.params;
-    console.log(filter);
     if(originalRecords.length > 0 && prevFilter !== filter) {
       setPrevFilter(filter);
       dispatch(Actions.toggleInFit(filter));
@@ -213,7 +216,7 @@ function HealthsList(props) {
             )
           }
         ]}
-        defaultPageSize={10}
+        defaultPageSize={ isMobile ? 5 : 10}
         noDataText="No records found"
       />
     </FuseAnimate>

@@ -28,29 +28,29 @@ export const NOT_FIT = 'notfit';
 
 export const validationSchema=Yup.object().shape({
   q1: Yup.string()
-    .required('Question 1 is required'),
+    .required('Su respuesta es requerido'),
   q2: Yup.string()
-    .required('Required'),
+    .required('Su respuesta es requerido'),
   q3: Yup.string()
-    .required('Required'),
+    .required('Su respuesta es requerido'),
   q4: Yup.string()
-    .required('Required'),
+    .required('Su respuesta es requerido'),
   q5: Yup.string()
-    .required('Required'),
+    .required('Su respuesta es requerido'),
   q6: Yup.string()
-    .required('Required'),
+    .required('Su respuesta es requerido'),
   q7: Yup.string()
-    .required('Required'),
+    .required('Su respuesta es requerido'),
   q8: Yup.string()
-    .required('Required'),
+    .required('Su respuesta es requerido'),
   q9: Yup.string()
-    .required('Required'),
+    .required('Su respuesta es requerido'),
   q10: Yup.string()
-    .required('Required'),
+    .required('Su respuesta es requerido'),
   q11: Yup.string()
-    .required('Required'),
+    .required('Su respuesta es requerido'),
   q12: Yup.string()
-    .required('Required'),
+    .required('Su respuesta es requerido'),
 });
 
 export const initialStateForm = {

@@ -15,7 +15,7 @@ const InfoTextTypography = withStyles({
   }
 })(Typography);
 
-const SimpleItem = ({ title, onChange, value, field, errors, touched, handleBlur, required, help }) => {
+const SimpleItem = ({ title, onChange, value, field, errors, touched, handleBlur, required, help, fullScreen }) => {
   return (
     <Card elevation={2} className="play-card p-sm-10 mt-3 bg-paper">
       <List>
@@ -23,7 +23,8 @@ const SimpleItem = ({ title, onChange, value, field, errors, touched, handleBlur
             <ListItemText
               primary={
                 <Typography variant="subtitle1">{title}{required ? <span style={{ color: 'red' }}>*</span> : null} </Typography>}
-              className="pr-200"/>
+              className={!fullScreen ? "pr-200" : null}/>
+              {!fullScreen ?
             <ListItemSecondaryAction>
               <FormControl component="fieldset">
                 <RadioGroup
@@ -38,8 +39,26 @@ const SimpleItem = ({ title, onChange, value, field, errors, touched, handleBlur
                   <FormControlLabel value="NO" control={<Radio />} label="NO" />
                 </RadioGroup>
               </FormControl>
-            </ListItemSecondaryAction>
+            </ListItemSecondaryAction> : null}
         </ListItem>
+        {
+          fullScreen ? 
+          <ListItem>
+            <FormControl component="fieldset">
+                <RadioGroup
+                  row
+                  name={field}
+                  aria-label={field}
+                  value={value}
+                  onChange={onChange}
+                  onBlur={handleBlur}
+                >
+                  <FormControlLabel value="SI" control={<Radio />} label="SI" />
+                  <FormControlLabel value="NO" control={<Radio />} label="NO" />
+                </RadioGroup>
+              </FormControl>
+          </ListItem> : null
+        }
         {!!help ?
           <ListItem>
             <ListItemText
