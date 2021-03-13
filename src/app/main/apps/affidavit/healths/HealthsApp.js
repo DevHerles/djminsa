@@ -69,7 +69,7 @@ function HealthsApp(props) {
           <Icon>person_add</Icon>
         </Fab>
       </FuseAnimate>
-      <HealthDialog />
+      <HealthDialog {...props}/>
     </React.Fragment>
   )
 }

@@ -8,6 +8,8 @@ import * as Yup from 'yup';
 export const GET_HEALTH = '[HEALTHS APP] GET HEALTH';
 export const GET_HEALTHS = '[HEALTHS APP] GET HEALTHS';
 export const SAVE_HEALTH = '[HEALTHS APP] SAVE HEALTH';
+export const SUCCESS_SAVE_HEALTH = '[HEALTHS APP] SUCCESS SAVE HEALTH';
+export const SUCCESS_UPDATE_HEALTH = '[HEALTHS APP] SUCCESS UPDATE HEALTH';
 export const DELETE_HEALTH = '[HEALTHS APP] DELETE HEALTH';
 export const DELETE_HEALTHS = '[HEALTHS APP] DELETE HEALTHS';
 export const TOGGLE_IN_SELECTED_HEALTHS = '[HEALTHS APP] TOGGLE IN SELECTED HEALTHS';
@@ -19,10 +21,14 @@ export const CLOSE_NEW_HEALTH_DIALOG = '[HEALTHS APP] CLOSE NEW HEALTH DIALOG';
 export const OPEN_EDIT_HEALTH_DIALOG = '[HEALTHS APP] OPEN EDIT HEALTH DIALOG';
 export const CLOSE_EDIT_HEALTH_DIALOG = '[HEALTHS APP] CLOSE EDIT HEALTH DIALOG';
 export const SET_HEALTHS_SEARCH_TEXT = 'SET HEALTHS SEARCH TEXT';
+export const RESET_PREVIOUS_HEALTH_RESPONSE = '[HEALTHS APP] RESET PREVIOUS HEALTH RESPONSE';
+export const ALL = 'all';
+export const FIT = 'fit';
+export const NOT_FIT = 'notfit';
 
 export const validationSchema=Yup.object().shape({
   q1: Yup.string()
-    .required('Required'),
+    .required('Question 1 is required'),
   q2: Yup.string()
     .required('Required'),
   q3: Yup.string()
@@ -81,8 +87,18 @@ export const initialStateList = {
       open: false
     },
     data: null
-  }
+  },
+  affidavitResult: null,
 };
+
+export function resetPreviousResponse() {
+  return (dispatch) => {
+    dispatch({
+      type: RESET_PREVIOUS_HEALTH_RESPONSE,
+      payload: null,
+    })
+  }
+}
 
 export function getAll(path) {
   const request = service.getAll(path);
@@ -120,7 +136,7 @@ export function deleteById(path, id) {
     });
 }
 
-export function create(path, data) {
+export function create(path, data, type) {
   const request = service.create(path, data);
   return (dispatch) =>
     request.then((response) => {
@@ -139,13 +155,14 @@ export function create(path, data) {
         variant: fit ? 'success' : q12 === 'SI' ? 'warning': 'error'//success error info warning null
       }));
       return dispatch({
-        type: SAVE_HEALTH,
-        payload: response.data
+        type: SUCCESS_SAVE_HEALTH,
+        payload: response.data,
+        filterType: type
       })
     });
 }
 
-export function updateById(path, id, data) {
+export function updateById(path, id, data, type) {
   const request = service.updateById(path, id, data);
   return (dispatch) =>
     request.then((response) => {
@@ -153,8 +170,9 @@ export function updateById(path, id, data) {
         message: 'Datos actualizados'
       }));
       return dispatch({
-        type: SAVE_HEALTH,
-        payload: response.data
+        type: SUCCESS_UPDATE_HEALTH,
+        payload: response.data,
+        filterType: type
       })
     });
 }

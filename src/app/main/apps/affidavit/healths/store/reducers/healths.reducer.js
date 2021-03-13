@@ -2,6 +2,12 @@ import * as Actions from '../actions';
 
 const reducer = function (state = Actions.initialStateList, action) {
   switch (action.type) {
+    case Actions.RESET_PREVIOUS_HEALTH_RESPONSE: {
+      return {
+        ...state,
+        affidavitResult: null,
+      }
+    }
     case Actions.GET_HEALTHS: {
       return {
         ...state,
@@ -11,10 +17,62 @@ const reducer = function (state = Actions.initialStateList, action) {
     }
     case Actions.DELETE_HEALTH: {
       const newData = state.data.filter((item) => item._id !== action.payload);
+      const newOriginalData = state.originalData.filter((item) => item._id !== action.payload);
       return {
         ...state,
         data: newData,
-        originalData: newData,
+        originalData: newOriginalData,
+      };
+    }
+    case Actions.SUCCESS_SAVE_HEALTH: {
+      const _filterType = action.filterType;
+      const newOriginalData = state.originalData.concat(action.payload);
+      let filteredData = state.data;
+      if (_filterType === Actions.ALL) {
+        filteredData = newOriginalData;
+      } else {
+        if (state.originalData.length > 0) {
+          if(_filterType === Actions.FIT && action.payload.fit === true) {
+            filteredData = filteredData.concat(action.payload);
+          }
+          if(_filterType === Actions.NOT_FIT && action.payload.fit === false) {
+            filteredData = filteredData.concat(action.payload);
+          }
+        }
+      }
+      return {
+        ...state,
+        data: filteredData,
+        originalData: newOriginalData,
+        affidavitResult: action.payload.fit,
+      };
+    }
+    case Actions.SUCCESS_UPDATE_HEALTH: {
+      const previousData = state.originalData.filter((item) => item._id !== action.payload._id) || [];
+      const {filterType} = action;
+      const newOriginalData = previousData.concat(action.payload);
+      let filteredData = state.data;
+      if (filterType === 'all') {
+        filteredData = newOriginalData;
+      } else {
+        if (state.originalData.length > 0) {
+          if(filterType === 'fit' && action.payload.fit === true) {
+            filteredData = filteredData.concat(action.payload);
+          }else if(filterType === 'fit' && action.payload.fit === false) {
+            filteredData = state.data.filter((item) => item._id !== action.payload._id);
+          }
+          if(filterType === 'notfit' && action.payload.fit === false) {
+            filteredData = filteredData.concat(action.payload);
+          }else if(filterType === 'notfit' && action.payload.fit === true) {
+            filteredData = state.data.filter((item) => item._id !== action.payload._id);
+          }
+        }
+      }
+      return {
+        ...state,
+        data: filteredData,
+        originalData: newOriginalData,
+        affidavitResult: null,
       };
     }
     case Actions.SET_HEALTHS_SEARCH_TEXT: {
@@ -44,10 +102,10 @@ const reducer = function (state = Actions.initialStateList, action) {
       const _filterType = action.filterType;
 
       let filteredData = [];
-      if (_filterType === 'all') {
+      if (_filterType === Actions.ALL) {
         filteredData = state.originalData;
       } else {
-        const _filter = _filterType === 'fit' ? true : false
+        const _filter = _filterType === Actions.FIT ? true : false
         if (state.originalData.length > 0) {
           filteredData = state.originalData.filter((item) => item.fit === _filter);
         }

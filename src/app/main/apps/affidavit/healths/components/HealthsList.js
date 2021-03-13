@@ -180,11 +180,14 @@ function HealthsList(props) {
                     dispatch(_DialogActions.openDialog({
                       children: (
                         <React.Fragment>
-                          <DialogTitle id="alert-dialog-title">Eliminar declaración jurda</DialogTitle>
+                          <DialogTitle id="alert-dialog-title">Eliminar declaración jurada de salud</DialogTitle>
                           <DialogContent>
                             <DialogContentText id="alert-dialog-description">
                               <p>
-                                ¿Seguro que desea eliminar?.
+                                ¿Seguro que desea eliminar la declaración jurada de salud de:
+                              </p>
+                              <p>
+                                {row.original.partner_id.name} {row.original.partner_id.first_name} {row.original.partner_id.last_name}?
                               </p>
                             </DialogContentText>
                           </DialogContent>
