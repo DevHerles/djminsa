@@ -1,9 +1,7 @@
 import React, { useEffect, Fragment, useState } from 'react';
 import { TextField, Button, Dialog, DialogActions, DialogContent, DialogContentText, Typography, Toolbar, AppBar } from '@material-ui/core';
-import { Icon, List, ListItem, ListItemText } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { SimpleItem } from '@asf';
-import { FuseAnimate, NavLinkAdapter } from '@fuse';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {Formik } from 'formik';
@@ -15,14 +13,14 @@ const helperTextstyles = {
     fontSize: 14,
   }
 }
-const API_PATH='healths';
+const API_PATH='symptoms';
 
-function HealthDialog(props) {
+function SymptomsDialog(props) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const dispatch = useDispatch();
-  const recordDialog = useSelector(({ affidavitHealthApp }) => affidavitHealthApp.records.recordDialog);
-  const affidavitResult = useSelector(({ affidavitHealthApp }) => affidavitHealthApp.records.affidavitResult);
+  const recordDialog = useSelector(({ affidavitSymptomsApp }) => affidavitSymptomsApp.records.recordDialog);
+  const affidavitResult = useSelector(({ affidavitSymptomsApp }) => affidavitSymptomsApp.records.affidavitResult);
   const [disclaimer, setDisclaimer] = useState(true);
   const [dialogMaxWidth, setDialogMaxWidth] = useState('lg');
   const [dialogTitle, setDialogTitle] = useState('Editar');
@@ -53,7 +51,7 @@ function HealthDialog(props) {
   }
 
   useEffect(() => {
-    recordDialog.type === 'edit' ? setDialogTitle('Editar declaración jurada de salud') : setDialogTitle('Nueva declaración jurada de salud')
+    recordDialog.type === 'edit' ? setDialogTitle('Editar declaración jurada de sintomatología') : setDialogTitle('Nueva declaración jurada de sintomatología')
   }, [recordDialog.type]);
 
   useEffect(() => {
@@ -65,29 +63,12 @@ function HealthDialog(props) {
   }, [affidavitResult])
 
   const questions = [
-    { id: "q1", label: "1. Hipertensión arterial no controlada" },
-    { id: "q2", label: "2. Enfermedades cardiovasculares graves" },
-    { id: "q3", label: "3. Diabetes Mellitus" },
-    {
-      id: "q4",
-      label: "4. Obesidad con IMC de 40 a mas",
-      help:
-        "El índice de masa corporal (IMC) se determina usando la formula peso(kg) / estatura(m)^2 Ejemplo: Peso 68 kg, Estatura = 1.66 m, Cálculo IMC = 68 / (1.65)(1.65) = 24.98",
-    },
-    { id: "q5", label: "5. Cáncer" },
-    { id: "q6", label: "6. Asma moderada o grave" },
-  ];
-
-  const questions1 = [
-    { id: "q7", label: "7. Enfermedad pulmonar crónica" },
-    {
-      id: "q8",
-      label: "8. Insuficiencia renal crónica en tratamiento con hemodiálisis",
-    },
-    { id: "q9", label: "9. Enfermedad o tratamiento inmunosupresor" },
-    { id: "q10", label: "10. Edad mayor de 65 años" },
-    { id: "q11", label: "11. Gestación" },
-    { id: "q12", label: "12. Otros" },
+    { id: "q1", label: "1. Sensación de alza térmica o fiebre" },
+    { id: "q2", label: "2. Tos, estornudos o dificultad para respirar" },
+    { id: "q3", label: "3. Expectoración o flema amarilla o verdosa" },
+    { id: "q4", label: "4. Pérdida de gusto y/o olfato" },
+    { id: "q5", label: "5. Contacto con persona(s) con un caso confirmado de COVID-19" },
+    { id: "q6", label: "6. Está tomando alguna medicación (detallar cuál o cuáles)" },
   ];
 
   return (
@@ -174,28 +155,6 @@ function HealthDialog(props) {
                       {questions.map((question) => {
                         return (
                           <Fragment
-                            key={`_index_${question.id}`}
-                          >
-                            <SimpleItem
-                              required
-                              fullScreen={fullScreen}
-                              key={`_index_${question.id}`}
-                              field={question.id}
-                              title={question.label}
-                              help={question?.help}
-                              onChange={handleChange}
-                              handleBlur={handleBlur}
-                              touched={touched}
-                              value={eval(`values.${question.id}`)}
-                              errors={eval(`errors.${question.id}`)} />
-                          </Fragment>
-                        );
-                      })}
-                    </div>
-                    <div className="flex flex-col flex-1 md:pr-32">
-                      {questions1.map((question) => {
-                        return (
-                          <Fragment
                           key={`_index__${question.id}`}
                           >
                             <SimpleItem
@@ -212,17 +171,17 @@ function HealthDialog(props) {
                           </Fragment>
                         );
                       })}
-                      { values.q12 ==='SI' ?
+                      { values.q6 ==='SI' ?
                       <TextField
                         label="Detalle otros*"
-                        name="q12_detail"
+                        name="q6_detail"
                         className="mt-20"
-                        value={values.q12_detail}
+                        value={values.q6_detail}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         multiline
                         rows={2}
-                        helperText={(errors?.q12_detail && touched.q12_detail) && errors?.q12_detail}
+                        helperText={(errors?.q6_detail && touched.q6_detail) && errors?.q6_detail}
                         FormHelperTextProps={{
                           style: helperTextstyles.helper
                         }}
@@ -242,7 +201,7 @@ function HealthDialog(props) {
                           type="submit"
                           disabled={!isValid || isSubmitting}
                         >
-                          Registrar declaración jurada de salud
+                          Registrar declaración jurada de sintomatología
                         </Button>
                         <Button
                           onClick={handleRemove}
@@ -257,7 +216,7 @@ function HealthDialog(props) {
                         type="submit"
                         disabled={!isValid || isSubmitting}
                       >
-                        Actualizar declaración jurada de salud
+                        Actualizar declaración jurada de sintomatología
                       </Button>
                       <Button
                         onClick={handleRemove}
@@ -294,15 +253,15 @@ function HealthDialog(props) {
         {affidavitResult !== null ?
           affidavitResult ?
           <DialogActions className="justify-between pl-16">
-            <ListItem
-              button
-              component={NavLinkAdapter}
-              to={'/apps/affidavit/symptoms/all'}
-              activeClassName="active"
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              onClick={handleSubmit}
+              disabled={!canBeSubmitted()}
             >
-              <Icon className="list-item-icon text-16" color="action">check</Icon>
-              <ListItemText className="truncate pr-0" primary="Continuar con la declaración jurada de sintomatología" disableTypography={true} />
-            </ListItem>
+              Continuar con la declaración jurada de sintomatología
+            </Button>
             <Button
               onClick={handleRemove}
             >
@@ -325,4 +284,4 @@ function HealthDialog(props) {
   );
 }
 
-export default HealthDialog;
+export default SymptomsDialog;

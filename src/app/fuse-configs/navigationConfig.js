@@ -17,7 +17,7 @@ const navigationConfig = [
                 'title': 'Salud',
                 'type' : 'item',
                 'icon' : 'sentiment_very_satisfied',
-                'url'  : '/apps/affidavit/healths',
+                'url'  : '/apps/affidavit/healths/all',
                 'exact': true,
             },
             {
@@ -25,7 +25,7 @@ const navigationConfig = [
                 'title': 'Sintomatología',
                 'type' : 'item',
                 'icon' : 'face',
-                'url'  : '/apps/affidavit/symptoms',
+                'url'  : '/apps/affidavit/symptoms/all',
                 'exact': true,
             },
         ]

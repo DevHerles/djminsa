@@ -6,9 +6,9 @@ import { FuseAnimate } from '@fuse';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Actions from '../store/actions';
 
-function HealthsHeader(props) {
+function SymptomsHeader(props) {
   const dispatch = useDispatch();
-  const searchText = useSelector(({ affidavitHealthApp }) => affidavitHealthApp.records.searchText);
+  const searchText = useSelector(({ affidavitSymptomsApp }) => affidavitSymptomsApp.records.searchText);
   const mainTheme = useSelector(({ fuse }) => fuse.settings.mainTheme);
 
   return (
@@ -27,10 +27,10 @@ function HealthsHeader(props) {
 
         <div className="flex items-center">
           <FuseAnimate animation="transition.expandIn" delay={300}>
-            <Icon className="text-32 mr-12">sentiment_very_satisfied</Icon>
+            <Icon className="text-32 mr-12">face</Icon>
           </FuseAnimate>
           <FuseAnimate animation="transition.slideLeftIn" delay={300}>
-            <Typography variant="h6" className="hidden sm:flex">Declaraciones juradas de salud</Typography>
+            <Typography variant="h6" className="hidden sm:flex">Declaraciones juradas de síntomas</Typography>
           </FuseAnimate>
         </div>
       </div>
@@ -59,4 +59,4 @@ function HealthsHeader(props) {
   );
 }
 
-export default HealthsHeader;
+export default SymptomsHeader;

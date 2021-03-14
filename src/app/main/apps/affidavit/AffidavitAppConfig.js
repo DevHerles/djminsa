@@ -13,8 +13,16 @@ export const AffidavitAppConfig = {
       component: React.lazy(() => import('./healths/HealthsApp'))
     },
     {
-      path: '/apps/affidavit',
+      path: '/apps/affidavit/healths',
       component: () => < Redirect to = "/apps/affidavit/healths/all" / >
+    },
+    {
+      path: '/apps/affidavit/symptoms/:filter',
+      component: React.lazy(() => import('./symptoms/SymptomsApp'))
+    },
+    {
+      path: '/apps/affidavit/symptoms',
+      component: () => < Redirect to = "/apps/affidavit/symptoms/all" / >
     }
   ]
 };
