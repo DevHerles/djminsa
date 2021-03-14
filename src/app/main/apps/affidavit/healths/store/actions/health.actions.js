@@ -51,6 +51,13 @@ export const validationSchema=Yup.object().shape({
     .required('Su respuesta es requerido'),
   q12: Yup.string()
     .required('Su respuesta es requerido'),
+  q12_detail: Yup.string().when("q12", {
+    is: "SI",
+    then: Yup.string()
+      .required("Por favor especifique otros")
+      .min(10, "Mínimo 10 caracteres.")
+      .max(254, "Máximo 254 caracteres."),
+  }),
 });
 
 export const initialStateForm = {
@@ -70,7 +77,7 @@ export const initialStateForm = {
     q11: '',
     q12: '',
     q12_detail: '',
-    q13: false,
+    q13: true,
   },
 };
 

@@ -6,11 +6,27 @@ import FuseUtils from '@fuse/FuseUtils';
 import * as Actions from '../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { SimpleItem } from '@asf';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+const helperTextStyles1 = makeStyles(theme => ({
+  root: {
+    margin: 4,
+    '&$error': {
+      color: 'white'
+    }
+  },
+  error: {} //<--this is required to make it work
+}));
+
+const helperTextstyles = {
+  helper: {
+    color: 'red',
+    fontSize: 14,
+  }
+}
 const API_PATH='healths';
 
 function HealthDialog(props) {
@@ -20,9 +36,11 @@ function HealthDialog(props) {
   const recordDialog = useSelector(({ affidavitHealthApp }) => affidavitHealthApp.records.recordDialog);
   const affidavitResult = useSelector(({ affidavitHealthApp }) => affidavitHealthApp.records.affidavitResult);
   const [disclaimer, setDisclaimer] = useState(true);
-  const [dialogMaxWidth, setDialogMaxWidth] = useState('md');
+  const [dialogMaxWidth, setDialogMaxWidth] = useState('lg');
   const [dialogTitle, setDialogTitle] = useState('Editar');
   const [hasResponse, setHasResponse] = useState(false);
+
+  //const helperTestClasses = helperTextStyles();
 
   function closeComposeDialog() {
     recordDialog.type === 'edit' ? dispatch(Actions.closeEditDialog()) : dispatch(Actions.closeNewDialog());
@@ -163,8 +181,8 @@ function HealthDialog(props) {
                 handleSubmit,
                 handleReset,
                 isValid,
+                setFieldValue,
               } = props;
-              //setDialogMaxWidth('lg');
               return (
                 <>
                 <form onSubmit={handleSubmit}>
@@ -211,6 +229,23 @@ function HealthDialog(props) {
                           </Fragment>
                         );
                       })}
+                      { values.q12 ==='SI' ?
+                      <TextField
+                        label="Detalle otros*"
+                        name="q12_detail"
+                        className="mt-20"
+                        value={values.q12_detail}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        multiline
+                        rows={2}
+                        helperText={(errors?.q12_detail && touched.q12_detail) && errors?.q12_detail}
+                        FormHelperTextProps={{
+                          style: helperTextstyles.helper
+                        }}
+                        margin="normal"
+                        variant="outlined"
+                      />: null }
                     </div>
                   </div>
                   <br></br>
@@ -222,7 +257,7 @@ function HealthDialog(props) {
                           variant="contained"
                           color="primary"
                           type="submit"
-                          disabled={!isValid ? true : null}
+                          disabled={!isValid || isSubmitting}
                         >
                           Registrar declaración jurada de salud
                         </Button>
@@ -237,7 +272,7 @@ function HealthDialog(props) {
                         variant="contained"
                         color="primary"
                         type="submit"
-                        disabled={!isValid ? true : null}
+                        disabled={!isValid || isSubmitting}
                       >
                         Actualizar declaración jurada de salud
                       </Button>
