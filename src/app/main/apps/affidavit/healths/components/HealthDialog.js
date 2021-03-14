@@ -1,25 +1,11 @@
-import React, { useEffect, useCallback, Fragment, useState } from 'react';
-import { TextField, Button, Dialog, DialogActions, DialogContent, DialogContentText, Icon, IconButton, Typography, Toolbar, AppBar, Avatar } from '@material-ui/core';
-import { Tab, Tabs } from '@material-ui/core';
-import { useForm } from '@fuse/hooks';
-import FuseUtils from '@fuse/FuseUtils';
-import * as Actions from '../store/actions';
+import React, { useEffect, Fragment, useState } from 'react';
+import { TextField, Button, Dialog, DialogActions, DialogContent, DialogContentText, Typography, Toolbar, AppBar } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { SimpleItem } from '@asf';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import {Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-
-const helperTextStyles1 = makeStyles(theme => ({
-  root: {
-    margin: 4,
-    '&$error': {
-      color: 'white'
-    }
-  },
-  error: {} //<--this is required to make it work
-}));
+import {Formik } from 'formik';
+import * as Actions from '../store/actions';
 
 const helperTextstyles = {
   helper: {
@@ -39,8 +25,6 @@ function HealthDialog(props) {
   const [dialogMaxWidth, setDialogMaxWidth] = useState('lg');
   const [dialogTitle, setDialogTitle] = useState('Editar');
   const [hasResponse, setHasResponse] = useState(false);
-
-  //const helperTestClasses = helperTextStyles();
 
   function closeComposeDialog() {
     recordDialog.type === 'edit' ? dispatch(Actions.closeEditDialog()) : dispatch(Actions.closeNewDialog());
@@ -174,14 +158,11 @@ function HealthDialog(props) {
                 values,
                 touched,
                 errors,
-                dirty,
                 isSubmitting,
                 handleChange,
                 handleBlur,
                 handleSubmit,
-                handleReset,
                 isValid,
-                setFieldValue,
               } = props;
               return (
                 <>

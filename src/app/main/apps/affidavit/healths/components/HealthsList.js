@@ -2,16 +2,13 @@ import React, {
   useEffect,
   useState
 } from 'react';
-import { Avatar, Button, Checkbox, Icon, IconButton, Typography } from '@material-ui/core';
+import { Avatar, Button, Icon, IconButton, Typography } from '@material-ui/core';
 import { DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 import {
   FuseAnimate,
   FuseUtils
 } from '@fuse';
 import ReactTable from "react-table";
-import {
-  withRouter
-} from 'react-router-dom';
 import _ from '@lodash';
 import {
   useDispatch,
@@ -19,7 +16,6 @@ import {
 } from 'react-redux';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import MUIDataTable from "mui-datatables";
 import * as Actions from '../store/actions';
 import * as _DialogActions from 'app/store/actions';
 //import MultiSelectMenu from './MultiSelectMenu';
@@ -37,9 +33,6 @@ function HealthsList(props) {
     affidavitHealthApp
   }) => affidavitHealthApp.records.originalData);
 
-  const selectedIds = useSelector(({
-    affidavitHealthApp
-  }) => affidavitHealthApp.records.selectedIds);
 
   const searchText = useSelector(({
     affidavitHealthApp
@@ -166,7 +159,7 @@ function HealthsList(props) {
             className: "justify-center",
             Header: "¿Activo?",
             accessor: "active",
-            Cell: (row) => (
+            Cell: () => (
               <div className="flex items-center">
                 <Icon>how_to_reg</Icon>
               </div>
@@ -223,5 +216,4 @@ function HealthsList(props) {
   );
 }
 
-//export default withRouter(HealthsList);
 export default HealthsList;
