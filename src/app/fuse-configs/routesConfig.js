@@ -31,9 +31,9 @@ function setAdminAuth(configs) {
 const routeConfigs = [
   ...setAdminAuth([
     ...appsConfig,
-    ...pagesConfig,
     LogoutConfig,
   ]),
+  ...pagesConfig,
   LoginConfig,
 ];
 
