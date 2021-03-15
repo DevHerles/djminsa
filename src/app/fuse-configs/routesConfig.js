@@ -17,6 +17,7 @@ import {
 import {
   LogoutConfig
 } from 'app/main/logout/LogoutConfig';
+import { AdminConfig } from 'app/main/admin/adminConfig';
 import {
   authRoles
 } from 'app/auth';
@@ -30,11 +31,12 @@ function setAdminAuth(configs) {
 
 const routeConfigs = [
   ...setAdminAuth([
-    ...appsConfig,
-    LogoutConfig,
+    ...AdminConfig,
   ]),
   ...pagesConfig,
+  ...appsConfig,
   LoginConfig,
+  LogoutConfig,
 ];
 
 const routes = [

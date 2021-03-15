@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useForm, FormProvider} from 'react-hook-form';
 import withReducer from 'app/store/withReducer';
 import {makeStyles} from '@material-ui/styles';
-import ReadOnlyField from '../components/ReadOnlyField';
+import ReadOnlyField from './ReadOnlyField';
 import * as Actions from '../store/actions';
 import reducer from '../store/reducers';
 import {FormInput, FormSelect, FormDatePicker, FormRadio} from '@asf';
